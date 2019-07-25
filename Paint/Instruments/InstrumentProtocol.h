@@ -8,6 +8,10 @@
 
 @protocol InstrumentProtocol
 
--(void)draw;
+@property (readwrite) NSMutableArray *pointArray;
+@property (readwrite) NSMutableArray *lineArray;
+@property (readwrite) CGPoint myBeginPoint;
 
+- (void)draw;
+//- (void)touchesMoved;
 @end

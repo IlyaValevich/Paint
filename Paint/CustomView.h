@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "InstrumentProtocol.h"
-@interface CustomView : UIView{
-    //@property (strong, nonatomic) Protocol *instrument;
+@interface CustomView : UIView
 
-   @public id <InstrumentProtocol> instrument;
-    //-(void)clear;
-}
+@property (strong, nonatomic) id <InstrumentProtocol> instrument;
+
 @end
 

@@ -1,21 +1,22 @@
 //
-//  PointIntrument.h
+//  SquareInstrument.h
 //  Paint
 //
-//  Created by Ilya on 7/24/19.
+//  Created by Ilya on 7/25/19.
 //  Copyright © 2019 Ilya. All rights reserved.
 //
-#import "InstrumentProtocol.h"
 
-@interface PointInstrument : NSObject <InstrumentProtocol>{
+#import "InstrumentProtocol.h"
+#include <math.h>
+
+@interface SquareInstrument : NSObject <InstrumentProtocol>{
     NSMutableArray *pointArray;
     NSMutableArray *lineArray;
     CGPoint myBeginPoint;
 }
-
 @end
 
-@implementation PointInstrument
+@implementation SquareInstrument
 
 - (id)init
 {
@@ -26,12 +27,9 @@
     return self;
 }
 
-
-
-
 - (void)draw {
-    NSLog(@"draw");
-
+    
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
     CGContextSetLineWidth(context, 8.0f);
@@ -45,12 +43,11 @@
             if ([array count] > 0) {
                 CGContextBeginPath(context);
                 CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
-                CGContextMoveToPoint(context, myStartPoint.x, myStartPoint.y);
                 
-                for (int j = 0; j < [array count] - 1; j++) {
-                    CGPoint myEndPoint = CGPointFromString([array objectAtIndex:j+1]);
-                    CGContextAddLineToPoint(context, myEndPoint.x,myEndPoint.y);
-                }
+                CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
+       
+                CGRect rect = CGRectMake (myStartPoint.x, myStartPoint.y, myEndPoint.x - myStartPoint.x, myEndPoint.x - myStartPoint.x);
+                CGContextAddRect(context, rect);
                 
                 CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
                 CGContextSetLineWidth(context, 8.0);
@@ -64,14 +61,17 @@
         CGPoint myStartPoint = CGPointFromString([pointArray objectAtIndex:0]);
         CGContextMoveToPoint(context, myStartPoint.x, myStartPoint.y);
         
-        for(int j = 0; j < [pointArray count]-1; j++){
-            CGPoint myEndPoint = CGPointFromString([pointArray objectAtIndex:j + 1]);
-            CGContextAddLineToPoint(context, myEndPoint.x,myEndPoint.y);
-        }
+        CGPoint myEndPoint = CGPointFromString([pointArray objectAtIndex:[pointArray count] - 1]);
+    
+        CGRect rect = CGRectMake (myStartPoint.x, myStartPoint.y, myEndPoint.x - myStartPoint.x, myEndPoint.x - myStartPoint.x);
+        CGContextAddRect(context, rect);
+        
         CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
         CGContextSetLineWidth(context, 8.0);
         CGContextStrokePath(context);
     }
+    
+    
 }
 
 

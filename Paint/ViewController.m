@@ -9,6 +9,10 @@
 #import "ViewController.h"
 #import "CustomView.h"
 #import "PointInstrument.h"
+#import "LineInstrument.h"
+#import "EllipseInstrument.h"
+#import "SquareInstrument.h"
+#import "StarInstrument.h"
 
 @interface ViewController ()
 @property (nonatomic,strong) CustomView *customView;
@@ -18,35 +22,82 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.customView = [[CustomView alloc]initWithFrame:CGRectMake(0, 0, 414, 700)];
-    self.customView.backgroundColor = [UIColor grayColor];
-    self.customView->instrument = PointInstrument();
+    self.customView = [[CustomView alloc]initWithFrame:CGRectMake(0, 0, 414, 800)];
+   // self.customView.backgroundColor = [UIColor grayColor];
+    
+    
     [self.view addSubview:self.customView];
     
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeSystem];
-    button1.frame = CGRectMake(0, 700, 82.8, 82.8);
-    button1.backgroundColor = [UIColor redColor];
-    [self.view addSubview:button1];
+    UIButton *pointButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    pointButton.frame = CGRectMake(0, 800, 82.8, 82.8);
+    //pointButton.backgroundColor = [UIColor redColor];
+    [pointButton setBackgroundImage:[UIImage imageNamed:@"point_logo.png"] forState: UIControlStateNormal];
+    [self.view addSubview:pointButton];
     
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeSystem];
-    button2.frame = CGRectMake(82.8, 700, 82.8, 82.8);
-    button2.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:button2];
+    [pointButton addTarget:self action:@selector(pointButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *button3 = [UIButton buttonWithType:UIButtonTypeSystem];
-    button3.frame = CGRectMake(165.6, 700, 82.8, 82.8);
-    button3.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:button3];
+    UIButton *lineButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    lineButton.frame = CGRectMake(82.8, 800, 82.8, 82.8);
+    //lineButton.backgroundColor = [UIColor blueColor];
+    [lineButton setBackgroundImage:[UIImage imageNamed:@"line_logo.png"] forState: UIControlStateNormal];
+    [self.view addSubview:lineButton];
     
-    UIButton *button4 = [UIButton buttonWithType:UIButtonTypeSystem];
-    button4.frame = CGRectMake(248.4, 700, 82.8, 82.8);
-    button4.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:button4];
+    [lineButton addTarget:self action:@selector(lineButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *button5 = [UIButton buttonWithType:UIButtonTypeSystem];
-    button5.frame = CGRectMake(331.2, 700, 82.8, 82.8);
-    button5.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:button5];
+    UIButton *ellipseButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    ellipseButton.frame = CGRectMake(165.6, 800, 82.8, 82.8);
+    //ellipseButton.backgroundColor = [UIColor greenColor];
+    [ellipseButton setBackgroundImage:[UIImage imageNamed:@"ellipse_logo.png"] forState: UIControlStateNormal];
+    [self.view addSubview:ellipseButton];
+    
+    [ellipseButton addTarget:self action:@selector(ellipseButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *squareButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    squareButton.frame = CGRectMake(248.4, 800, 82.8, 82.8);
+    //squareButton.backgroundColor = [UIColor grayColor];
+    [squareButton setBackgroundImage:[UIImage imageNamed:@"square_logo.png"] forState: UIControlStateNormal];
+    [self.view addSubview:squareButton];
+    
+    [squareButton addTarget:self action:@selector(squareButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *starButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    starButton.frame = CGRectMake(331.2, 800, 82.8, 82.8);
+    //starButton.backgroundColor = [UIColor blackColor];
+    [starButton setBackgroundImage:[UIImage imageNamed:@"star_logo.png"] forState: UIControlStateNormal];
+    [self.view addSubview:starButton];
+    
+    [starButton addTarget:self action:@selector(starButtonAction) forControlEvents:UIControlEventTouchUpInside];
+}
+
+//self.customView.instrument = [[PointInstrument alloc]init];
+//self.customView.instrument = [[LineInstrument alloc]init];
+//self.customView.instrument = [[EllipseInstrument alloc]init];
+//self.customView.instrument = [[SquareInstrument alloc]init];
+//self.customView.instrument = [[StarInstrument alloc]init];
+
+-(void)pointButtonAction
+{
+    self.customView.instrument = [[PointInstrument alloc]init];
+}
+
+-(void)lineButtonAction
+{
+    self.customView.instrument = [[LineInstrument alloc]init];
+}
+
+-(void)ellipseButtonAction
+{
+    self.customView.instrument = [[EllipseInstrument alloc]init];
+}
+
+-(void)squareButtonAction
+{
+    self.customView.instrument = [[SquareInstrument alloc]init];
+}
+
+-(void)starButtonAction
+{
+    self.customView.instrument = [[StarInstrument alloc]init];
 }
 
 
