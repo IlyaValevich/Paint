@@ -6,8 +6,9 @@
 //  Copyright © 2019 Ilya. All rights reserved.
 //
 
-#import "InstrumentProtocol.h"
 #include <math.h>
+#import "InstrumentProtocol.h"
+#import "StateManager.h"
 
 @interface SquareInstrument : NSObject <InstrumentProtocol>{
     NSMutableArray *pointArray;
@@ -73,14 +74,5 @@
     
     
 }
-
-
-
-
-@synthesize lineArray;
-
-@synthesize myBeginPoint;
-
-@synthesize pointArray;
 
 @end

@@ -6,6 +6,7 @@
 //  Copyright © 2019 Ilya. All rights reserved.
 //
 #import "InstrumentProtocol.h"
+#import "StateManager.h"
 
 @interface LineInstrument : NSObject <InstrumentProtocol>{
     NSMutableArray *pointArray;
@@ -71,14 +72,5 @@
     
     
 }
-
-
-
-
-@synthesize lineArray;
-
-@synthesize myBeginPoint;
-
-@synthesize pointArray;
 
 @end

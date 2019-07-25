@@ -8,7 +8,10 @@
 
 #import "CustomView.h"
 #import "InstrumentProtocol.h"
+#import "StateManager.h"
+
 @interface CustomView(){
+    
 }
 @end
 
@@ -41,18 +44,22 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    StateManager *sharedStateManager = [StateManager sharedStateManager];
+    
     UITouch *touch = [touches anyObject];
-    self.instrument.myBeginPoint = [touch locationInView:self];
-    NSString *sPoint = NSStringFromCGPoint(self.instrument.myBeginPoint);
-    [self.instrument.pointArray addObject:sPoint];
+    sharedStateManager.myBeginPoint = [touch locationInView:self];
+    NSString *sPoint = NSStringFromCGPoint(sharedStateManager.myBeginPoint);
+    [sharedStateManager.pointArray addObject:sPoint];
     [self setNeedsDisplay];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSArray *array = [NSArray arrayWithArray:self.instrument.pointArray];
-    [self.instrument.lineArray addObject:array];
-    self.instrument.pointArray = [[NSMutableArray alloc]init];
+    StateManager *sharedStateManager = [StateManager sharedStateManager];
+    
+    NSArray *array = [NSArray arrayWithArray:sharedStateManager.pointArray];
+    [sharedStateManager.lineArray addObject:array];
+    sharedStateManager.pointArray = [[NSMutableArray alloc]init];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event

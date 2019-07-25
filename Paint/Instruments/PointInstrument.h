@@ -6,11 +6,10 @@
 //  Copyright © 2019 Ilya. All rights reserved.
 //
 #import "InstrumentProtocol.h"
+#import "StateManager.h"
 
 @interface PointInstrument : NSObject <InstrumentProtocol>{
-    NSMutableArray *pointArray;
-    NSMutableArray *lineArray;
-    CGPoint myBeginPoint;
+
 }
 
 @end
@@ -20,17 +19,13 @@
 - (id)init
 {
     if (self = [super init]) {
-        pointArray=[[NSMutableArray alloc]init];
-        lineArray=[[NSMutableArray alloc]init];
     }
     return self;
 }
 
-
-
-
 - (void)draw {
-    NSLog(@"draw");
+    
+    StateManager *sharedStateManager = [StateManager sharedStateManager];
 
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
@@ -39,9 +34,9 @@
     CGContextSetLineJoin(context, kCGLineJoinRound);
     CGContextSetLineCap(context, kCGLineCapRound);
     
-    if ([lineArray count] > 0) {
-        for (int i = 0; i < [lineArray count]; i++) {
-            NSArray * array = [NSArray arrayWithArray:[lineArray objectAtIndex:i]];
+    if ([sharedStateManager.lineArray count] > 0) {
+        for (int i = 0; i < [sharedStateManager.lineArray count]; i++) {
+            NSArray * array = [NSArray arrayWithArray:[sharedStateManager.lineArray objectAtIndex:i]];
             if ([array count] > 0) {
                 CGContextBeginPath(context);
                 CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
@@ -59,13 +54,13 @@
         }
     }
     
-    if ([pointArray count] > 0) {
+    if ([sharedStateManager.pointArray count] > 0) {
         CGContextBeginPath(context);
-        CGPoint myStartPoint = CGPointFromString([pointArray objectAtIndex:0]);
+        CGPoint myStartPoint = CGPointFromString([sharedStateManager.pointArray objectAtIndex:0]);
         CGContextMoveToPoint(context, myStartPoint.x, myStartPoint.y);
         
-        for(int j = 0; j < [pointArray count]-1; j++){
-            CGPoint myEndPoint = CGPointFromString([pointArray objectAtIndex:j + 1]);
+        for(int j = 0; j < [sharedStateManager.pointArray count]-1; j++){
+            CGPoint myEndPoint = CGPointFromString([sharedStateManager.pointArray objectAtIndex:j + 1]);
             CGContextAddLineToPoint(context, myEndPoint.x,myEndPoint.y);
         }
         CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
@@ -75,12 +70,5 @@
 }
 
 
-
-
-@synthesize lineArray;
-
-@synthesize myBeginPoint;
-
-@synthesize pointArray;
 
 @end

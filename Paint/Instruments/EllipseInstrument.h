@@ -7,6 +7,7 @@
 //
 
 #import "InstrumentProtocol.h"
+#import "StateManager.h"
 
 @interface EllipseInstrument : NSObject <InstrumentProtocol>{
     NSMutableArray *pointArray;
@@ -74,14 +75,5 @@
     
     
 }
-
-
-
-
-@synthesize lineArray;
-
-@synthesize myBeginPoint;
-
-@synthesize pointArray;
 
 @end
