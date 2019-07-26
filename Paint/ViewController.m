@@ -23,8 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.customView = [[CustomView alloc]initWithFrame:CGRectMake(0, 0, 414, 800)];
-   // self.customView.backgroundColor = [UIColor grayColor];
-    
     
     [self.view addSubview:self.customView];
     
@@ -77,12 +75,14 @@
 
 -(void)pointButtonAction
 {
-    self.customView.instrument = [[PointInstrument alloc]init];
+    PointInstrument *instrument = [[PointInstrument alloc]init];
+    [self.customView setInstrument:instrument];
 }
 
 -(void)lineButtonAction
 {
-    self.customView.instrument = [[LineInstrument alloc]init];
+    LineInstrument *instrument = [[LineInstrument alloc]init];
+    [self.customView setInstrument:instrument];
 }
 
 -(void)ellipseButtonAction

@@ -7,10 +7,12 @@
 //
 #import "InstrumentProtocol.h"
 
+
 @interface PointInstrument : NSObject <InstrumentProtocol>{
     NSMutableArray *pointArray;
     NSMutableArray *lineArray;
     CGPoint myBeginPoint;
+    CGContextRef context;
 }
 
 @end
@@ -22,17 +24,29 @@
     if (self = [super init]) {
         pointArray=[[NSMutableArray alloc]init];
         lineArray=[[NSMutableArray alloc]init];
+//        self.context = nil;
     }
     return self;
 }
 
+-(id)init:(CGContextRef)context{
+    if (self = [super init]) {
+        self.pointArray=[[NSMutableArray alloc]init];
+        self.lineArray=[[NSMutableArray alloc]init];
+        self.context = context;
+    }
+    return self;
 
+}
 
+-(void)setContext:(CGContextRef)context{
+    context = context;
+}
 
-- (void)draw {
+- (CGContextRef)draw {
+    context = UIGraphicsGetCurrentContext();
     NSLog(@"draw");
-
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
     CGContextBeginPath(context);
     CGContextSetLineWidth(context, 8.0f);
     
@@ -72,8 +86,19 @@
         CGContextSetLineWidth(context, 8.0);
         CGContextStrokePath(context);
     }
+    
+    CGContextRestoreGState(context);
+    return context;
+    /*
+    context = UIGraphicsGetCurrentContext();
+    [[UIColor greenColor] set];
+    CGContextSetLineWidth(context,40.0f);
+    CGContextMoveToPoint(context,100.0f, 50.0f);
+    CGContextAddLineToPoint(context,50.0f, 40.0f);
+    CGContextStrokePath(context);
+    return context;
+    */
 }
-
 
 
 
@@ -82,5 +107,7 @@
 @synthesize myBeginPoint;
 
 @synthesize pointArray;
+
+@synthesize context;
 
 @end

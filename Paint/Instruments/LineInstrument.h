@@ -11,6 +11,7 @@
     NSMutableArray *pointArray;
     NSMutableArray *lineArray;
     CGPoint myBeginPoint;
+    CGContextRef context;
 }
 @end
 
@@ -25,13 +26,23 @@
     return self;
 }
 
-
-
-
-- (void)draw {
+-(id)initWithContext:(CGContextRef)context{
+    if (self = [super init]) {
+        self.pointArray=[[NSMutableArray alloc]init];
+        self.lineArray=[[NSMutableArray alloc]init];
+        self.context = context;
+    }
+    return self;
     
+}
+
+-(void)setContext:(CGContextRef)context{
+    context = context;
+}
+
+- (CGContextRef)draw {
+    /*CGContextSaveGState(context);
     
-    CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
     CGContextSetLineWidth(context, 8.0f);
     
@@ -68,17 +79,25 @@
         CGContextSetLineWidth(context, 8.0);
         CGContextStrokePath(context);
     }
-    
-    
+    CGContextDrawPath(context, kCGPathFillStroke);
+    CGContextRestoreGState(context);
+    return context;
+     */
+    context = UIGraphicsGetCurrentContext();
+    [[UIColor greenColor] set];
+    CGContextSetLineWidth(context,10.0f);
+    CGContextMoveToPoint(context,10.0f, 50.0f);
+    CGContextAddLineToPoint(context,50.0f, 100.0f);
+    CGContextStrokePath(context);
+    return context;
 }
-
-
-
 
 @synthesize lineArray;
 
 @synthesize myBeginPoint;
 
 @synthesize pointArray;
+
+@synthesize context;
 
 @end

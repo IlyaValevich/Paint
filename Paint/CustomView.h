@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "InstrumentProtocol.h"
+
 @interface CustomView : UIView
 
 @property (strong, nonatomic) id <InstrumentProtocol> instrument;
+//@property (nonatomic) CGContextRef context;
 
 @end
 

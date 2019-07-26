@@ -11,7 +11,10 @@
 @property (readwrite) NSMutableArray *pointArray;
 @property (readwrite) NSMutableArray *lineArray;
 @property (readwrite) CGPoint myBeginPoint;
+@property (readwrite) CGContextRef context;
 
-- (void)draw;
-//- (void)touchesMoved;
+- (CGContextRef)draw;
+//- (void)drawByContext:(CGContextRef) context;
+- (id)init:(CGContextRef) context;
+- (void)setContext:(CGContextRef) context;
 @end

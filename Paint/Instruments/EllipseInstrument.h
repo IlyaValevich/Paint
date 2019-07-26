@@ -75,9 +75,6 @@
     
 }
 
-
-
-
 @synthesize lineArray;
 
 @synthesize myBeginPoint;
