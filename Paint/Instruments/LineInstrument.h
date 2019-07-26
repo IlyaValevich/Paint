@@ -12,6 +12,8 @@
     NSMutableArray *lineArray;
     CGPoint myBeginPoint;
     CGContextRef context;
+    UIImageView* mainImageView;
+    UIImageView* tempImageView;
 }
 @end
 
@@ -26,11 +28,13 @@
     return self;
 }
 
--(id)initWithContext:(CGContextRef)context{
+-(id)initWithContext:(CGContextRef)context:(UIImageView *)mainImageView :(UIImageView *)tempImageView {
     if (self = [super init]) {
         self.pointArray=[[NSMutableArray alloc]init];
         self.lineArray=[[NSMutableArray alloc]init];
         self.context = context;
+        self.mainImageView = mainImageView;
+        self.tempImageView = tempImageView;
     }
     return self;
     
@@ -40,7 +44,15 @@
     context = context;
 }
 
-- (CGContextRef)draw {
+-(void)setMainImageView:(UIImageView *)mainImageView{
+    mainImageView = mainImageView;
+}
+
+-(void)setTempImageView:(UIImageView *)tempImageView{
+    tempImageView = tempImageView;
+}
+
+- (UIImageView*)draw {
     /*CGContextSaveGState(context);
     
     CGContextBeginPath(context);
@@ -83,13 +95,37 @@
     CGContextRestoreGState(context);
     return context;
      */
+    mainImageView.clearsContextBeforeDrawing = NO;
+    
     context = UIGraphicsGetCurrentContext();
+    
+    
+    UIGraphicsBeginImageContext(mainImageView.frame.size);
+    
+    [tempImageView.image drawInRect:mainImageView.bounds];
+    
     [[UIColor greenColor] set];
     CGContextSetLineWidth(context,10.0f);
-    CGContextMoveToPoint(context,10.0f, 50.0f);
+    CGContextMoveToPoint(context,101.0f, 150.0f);
     CGContextAddLineToPoint(context,50.0f, 100.0f);
+    
     CGContextStrokePath(context);
-    return context;
+    //CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
+    tempImageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    tempImageView.alpha = 1;
+    
+    UIGraphicsEndImageContext();
+    
+    UIGraphicsBeginImageContext(mainImageView.frame.size);
+    
+    [mainImageView.image drawInRect:mainImageView.bounds blendMode:normal alpha:1];
+    
+    [tempImageView.image drawInRect:tempImageView.bounds blendMode:normal alpha:1];
+    mainImageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    tempImageView.image = nil;
+    return mainImageView;
 }
 
 @synthesize lineArray;
@@ -99,5 +135,9 @@
 @synthesize pointArray;
 
 @synthesize context;
+
+@synthesize tempImageView;
+
+@synthesize mainImageView;
 
 @end

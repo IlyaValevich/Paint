@@ -12,9 +12,14 @@
 @property (readwrite) NSMutableArray *lineArray;
 @property (readwrite) CGPoint myBeginPoint;
 @property (readwrite) CGContextRef context;
+@property (readwrite) UIImageView* mainImageView;
+@property (readwrite) UIImageView* tempImageView;
 
-- (CGContextRef)draw;
+-(UIImageView *)draw;
 //- (void)drawByContext:(CGContextRef) context;
-- (id)init:(CGContextRef) context;
+- (id)init:(CGContextRef) context:(UIImageView*) mainImageView: (UIImageView*) tempImageView;
 - (void)setContext:(CGContextRef) context;
+- (void)setMainImageView:(UIImageView*) mainImageView;
+- (void)setTempImageView:(UIImageView*) tempImageView;
+
 @end

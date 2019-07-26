@@ -8,6 +8,8 @@
 #import "CustomView.h"
 
 @interface CustomView(){
+    UIImageView* mainImageView;
+    UIImageView* tempImageView;
 }
 @end
 
@@ -16,6 +18,8 @@
 - (id)init
 {
     if (self = [super init]) {
+        mainImageView = nil;
+        tempImageView = nil;
     }
     return self;
 }
@@ -24,25 +28,33 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
+        tempImageView = [[UIImageView alloc] initWithFrame:frame];
+        tempImageView.backgroundColor = [UIColor clearColor];
+        [self addSubview:tempImageView];
+        mainImageView = [[UIImageView alloc] initWithFrame:frame];
+        mainImageView.backgroundColor = [UIColor clearColor];
+        [self addSubview:mainImageView];
     }
     return self;
 }
 
 -(void) drawRect:(CGRect)rect
 {
+    NSLog(@"%@", mainImageView.image);
     self.clearsContextBeforeDrawing = NO;
-    
-    //[self.instrument setContext:UIGraphicsGetCurrentContext()];
-    
-    [self.instrument draw];
-    NSLog(@"%@", [self.instrument draw]);
+    mainImageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    [self.instrument setContext:UIGraphicsGetCurrentContext()];
+    [self.instrument setMainImageView:mainImageView];
+    [self.instrument setTempImageView:self.tempImageView];
+    mainImageView = [self.instrument draw];
+
     
 
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touchesBegan");    
+    
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event

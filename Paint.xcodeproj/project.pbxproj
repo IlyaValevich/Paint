@@ -94,8 +94,8 @@
 		09A37E5F22E89C8B0075C43B /* Instruments */ = {
 			isa = PBXGroup;
 			children = (
-				09A37E6122E8A2460075C43B /* PointInstrument.h */,
 				09A37E6022E89D9A0075C43B /* InstrumentProtocol.h */,
+				09A37E6122E8A2460075C43B /* PointInstrument.h */,
 				09A37E6422E9981C0075C43B /* LineInstrument.h */,
 				09A37E6522E9A22A0075C43B /* EllipseInstrument.h */,
 				09A37E6722E9BC810075C43B /* StarInstrument.h */,

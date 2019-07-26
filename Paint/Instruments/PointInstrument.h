@@ -13,6 +13,8 @@
     NSMutableArray *lineArray;
     CGPoint myBeginPoint;
     CGContextRef context;
+    UIImageView *mainImageView;
+    UIImageView *tempImageView;
 }
 
 @end
@@ -29,11 +31,13 @@
     return self;
 }
 
--(id)init:(CGContextRef)context{
+-(id)init:(CGContextRef)context:(UIImageView *)mainImageView :(UIImageView *)tempImageView {
     if (self = [super init]) {
         self.pointArray=[[NSMutableArray alloc]init];
         self.lineArray=[[NSMutableArray alloc]init];
         self.context = context;
+        self.mainImageView = mainImageView;
+        self.tempImageView = tempImageView;
     }
     return self;
 
@@ -43,8 +47,16 @@
     context = context;
 }
 
-- (CGContextRef)draw {
-    context = UIGraphicsGetCurrentContext();
+-(void)setMainImageView:(UIImageView *)mainImageView{
+    mainImageView = mainImageView;
+}
+
+-(void)setTempImageView:(UIImageView *)tempImageView{
+    tempImageView = tempImageView;
+}
+
+- (UIImageView *)draw {
+    /*context = UIGraphicsGetCurrentContext();
     NSLog(@"draw");
     CGContextSaveGState(context);
     CGContextBeginPath(context);
@@ -89,15 +101,71 @@
     
     CGContextRestoreGState(context);
     return context;
-    /*
+    
+     
+     
+     
+    //context = UIGraphicsGetCurrentContext();
+    
+    
+    UIGraphicsBeginImageContext(tempImageView.frame.size);
     context = UIGraphicsGetCurrentContext();
-    [[UIColor greenColor] set];
-    CGContextSetLineWidth(context,40.0f);
-    CGContextMoveToPoint(context,100.0f, 50.0f);
-    CGContextAddLineToPoint(context,50.0f, 40.0f);
-    CGContextStrokePath(context);
-    return context;
+    [tempImageView.image drawInRect:tempImageView.frame];
+    
+    if ([lineArray count] > 0) {
+        for (int i = 0; i < [lineArray count]; i++) {
+            NSArray * array = [NSArray arrayWithArray:[lineArray objectAtIndex:i]];
+            if ([array count] > 0) {
+                CGContextBeginPath(context);
+                CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
+                CGContextMoveToPoint(context, myStartPoint.x, myStartPoint.y);
+                
+                for (int j = 0; j < [array count] - 1; j++) {
+                    CGPoint myEndPoint = CGPointFromString([array objectAtIndex:j+1]);
+                    CGContextAddLineToPoint(context, myEndPoint.x,myEndPoint.y);
+                }
+                
+                CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
+                CGContextSetLineWidth(context, 8.0);
+                CGContextStrokePath(context);
+            }
+        }
+    }
     */
+    NSLog(@"%@", mainImageView.image);
+    mainImageView.clearsContextBeforeDrawing = NO;
+    
+    context = UIGraphicsGetCurrentContext();
+    
+    
+    UIGraphicsBeginImageContext(mainImageView.frame.size);
+    
+    [tempImageView.image drawInRect:mainImageView.bounds];
+    
+    [[UIColor greenColor] set];
+    CGContextSetLineWidth(context,10.0f);
+    CGContextMoveToPoint(context,10.0f, 50.0f);
+    CGContextAddLineToPoint(context,50.0f, 100.0f);
+    
+    CGContextStrokePath(context);
+    //CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
+    tempImageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    tempImageView.alpha = 1;
+    
+    UIGraphicsEndImageContext();
+    
+    UIGraphicsBeginImageContext(mainImageView.frame.size);
+    
+    [mainImageView.image drawInRect:mainImageView.bounds blendMode:normal alpha:1];
+    
+    [tempImageView.image drawInRect:tempImageView.bounds blendMode:normal alpha:1];
+    mainImageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    tempImageView.image = nil;
+    NSLog(@"%@", mainImageView.image);
+    return mainImageView;
+    
 }
 
 
@@ -109,5 +177,9 @@
 @synthesize pointArray;
 
 @synthesize context;
+
+@synthesize mainImageView;
+
+@synthesize tempImageView;
 
 @end
