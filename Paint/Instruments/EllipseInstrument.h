@@ -5,13 +5,13 @@
 //  Created by Ilya on 7/25/19.
 //  Copyright © 2019 Ilya. All rights reserved.
 //
-
 #import "InstrumentProtocol.h"
 
 @interface EllipseInstrument : NSObject <InstrumentProtocol>{
     NSMutableArray *pointArray;
     NSMutableArray *lineArray;
     CGPoint myBeginPoint;
+    UIImageView* tempImageView;
 }
 @end
 
@@ -26,10 +26,24 @@
     return self;
 }
 
-- (void)draw {
-    
+- (id)init:(UIImageView *)tempImageView{
+    if (self = [super init]) {
+        self.pointArray=[[NSMutableArray alloc]init];
+        self.lineArray=[[NSMutableArray alloc]init];
+        self.tempImageView = tempImageView;
+    }
+    return self;
+}
+
+- (UIImage*)draw {
+    tempImageView.clearsContextBeforeDrawing = NO;
+    UIGraphicsBeginImageContext(tempImageView.frame.size);
+    [tempImageView.image drawAtPoint:CGPointZero];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    [[UIColor greenColor] setStroke];
+    
     CGContextBeginPath(context);
     CGContextSetLineWidth(context, 8.0f);
     
@@ -56,7 +70,7 @@
         }
     }
  
-    if ([pointArray count] > 0) {
+    /*if ([pointArray count] > 0) {
         CGContextBeginPath(context);
         CGPoint myStartPoint = CGPointFromString([pointArray objectAtIndex:0]);
         CGContextMoveToPoint(context, myStartPoint.x, myStartPoint.y);
@@ -71,8 +85,13 @@
         CGContextSetLineWidth(context, 8.0);
         CGContextStrokePath(context);
     }
+     */
+    tempImageView.image = UIGraphicsGetImageFromCurrentImageContext();
     
+    UIGraphicsEndImageContext();
     
+    [tempImageView setNeedsDisplay];
+    return tempImageView.image;
 }
 
 @synthesize lineArray;
@@ -80,5 +99,7 @@
 @synthesize myBeginPoint;
 
 @synthesize pointArray;
+
+@synthesize tempImageView;
 
 @end

@@ -8,18 +8,20 @@
 
 @protocol InstrumentProtocol
 
-@property (readwrite) NSMutableArray *pointArray;
-@property (readwrite) NSMutableArray *lineArray;
-@property (readwrite) CGPoint myBeginPoint;
-@property (readwrite) CGContextRef context;
-@property (readwrite) UIImageView* mainImageView;
-@property (readwrite) UIImageView* tempImageView;
+@property (nonatomic,readwrite) NSMutableArray *pointArray;
+@property (nonatomic,readwrite) NSMutableArray *lineArray;
+@property (nonatomic,readwrite) CGPoint myBeginPoint;
+@property (nonatomic,readwrite) UIImageView* tempImageView;
 
--(UIImageView *)draw;
-//- (void)drawByContext:(CGContextRef) context;
-- (id)init:(CGContextRef) context:(UIImageView*) mainImageView: (UIImageView*) tempImageView;
+
+- (UIImage *)draw;
+- (id)init:(UIImageView*) tempImageView;
+
+
+//- (id)init:(CGContextRef) context mainImageView:
+/*
 - (void)setContext:(CGContextRef) context;
 - (void)setMainImageView:(UIImageView*) mainImageView;
 - (void)setTempImageView:(UIImageView*) tempImageView;
-
+*/
 @end

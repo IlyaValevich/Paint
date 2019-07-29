@@ -10,9 +10,9 @@
 #import "InstrumentProtocol.h"
 
 @interface CustomView : UIView
-@property (strong, nonatomic) UIImageView* mainImageView;
-@property (strong, nonatomic) UIImageView* tempImageView;
-@property (strong, nonatomic) id <InstrumentProtocol> instrument;
+@property (nonatomic,readwrite) UIImageView* mainImageView;
+@property (nonatomic,readwrite) UIImageView* tempImageView;
+@property (nonatomic,readwrite) id <InstrumentProtocol> instrument;
 
 @end
 

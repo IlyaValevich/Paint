@@ -6,10 +6,12 @@
 //  Copyright © 2019 Ilya. All rights reserved.
 //
 #import "CustomView.h"
+#import "InstrumentProtocol.h"
 
 @interface CustomView(){
     UIImageView* mainImageView;
     UIImageView* tempImageView;
+    id <InstrumentProtocol> instrument;
 }
 @end
 
@@ -18,7 +20,7 @@
 - (id)init
 {
     if (self = [super init]) {
-        mainImageView = nil;
+        tempImageView = nil;
         tempImageView = nil;
     }
     return self;
@@ -40,21 +42,18 @@
 
 -(void) drawRect:(CGRect)rect
 {
-    NSLog(@"%@", mainImageView.image);
+    NSLog(@"draw");
     self.clearsContextBeforeDrawing = NO;
-    mainImageView.image = UIGraphicsGetImageFromCurrentImageContext();
-    [self.instrument setContext:UIGraphicsGetCurrentContext()];
-    [self.instrument setMainImageView:mainImageView];
-    [self.instrument setTempImageView:self.tempImageView];
-    mainImageView = [self.instrument draw];
-
+    self.instrument.tempImageView = self.mainImageView;
+    self.tempImageView.image = [self.instrument draw];
+    self.mainImageView = self.tempImageView;
+   
     
-
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
+    [self setNeedsDisplay];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -65,6 +64,8 @@
     NSString *sPoint = NSStringFromCGPoint(self.instrument.myBeginPoint);
     [self.instrument.pointArray addObject:sPoint];
     
+    //[self.mainImageView setNeedsDisplay];
+    //[self.tempImageView setNeedsDisplay];
     [self setNeedsDisplay];
     
 }
@@ -75,12 +76,18 @@
     NSArray *array = [NSArray arrayWithArray:self.instrument.pointArray];
     [self.instrument.lineArray addObject:array];
     self.instrument.pointArray = [[NSMutableArray alloc]init];
-  
+    [self setNeedsDisplay];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
     NSLog(@"touches Canelled");
 }
+
+@synthesize mainImageView;
+
+@synthesize tempImageView;
+
+@synthesize instrument;
 
 @end
