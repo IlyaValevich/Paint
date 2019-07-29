@@ -9,9 +9,9 @@
 #import "InstrumentProtocol.h"
 
 @interface CustomView(){
-    UIImageView* mainImageView;
     UIImageView* tempImageView;
     id <InstrumentProtocol> instrument;
+    NSMutableArray *pointArray;
 }
 @end
 
@@ -21,7 +21,7 @@
 {
     if (self = [super init]) {
         tempImageView = nil;
-        tempImageView = nil;
+        pointArray=[[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -33,22 +33,15 @@
         tempImageView = [[UIImageView alloc] initWithFrame:frame];
         tempImageView.backgroundColor = [UIColor clearColor];
         [self addSubview:tempImageView];
-        mainImageView = [[UIImageView alloc] initWithFrame:frame];
-        mainImageView.backgroundColor = [UIColor clearColor];
-        [self addSubview:mainImageView];
+        pointArray=[[NSMutableArray alloc]init];
     }
     return self;
 }
 
 -(void) drawRect:(CGRect)rect
 {
-    NSLog(@"draw");
     self.clearsContextBeforeDrawing = NO;
-    self.instrument.tempImageView = self.mainImageView;
-    self.tempImageView.image = [self.instrument draw];
-    self.mainImageView = self.tempImageView;
-   
-    
+    [self.instrument draw];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -58,36 +51,31 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
     UITouch *touch = [touches anyObject];
     self.instrument.myBeginPoint = [touch locationInView:self];
     NSString *sPoint = NSStringFromCGPoint(self.instrument.myBeginPoint);
-    [self.instrument.pointArray addObject:sPoint];
-    
-    //[self.mainImageView setNeedsDisplay];
-    //[self.tempImageView setNeedsDisplay];
+    [self.pointArray addObject:sPoint];
+
     [self setNeedsDisplay];
-    
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-
-    NSArray *array = [NSArray arrayWithArray:self.instrument.pointArray];
+    NSArray *array = [NSArray arrayWithArray:self.pointArray];
     [self.instrument.lineArray addObject:array];
-    self.instrument.pointArray = [[NSMutableArray alloc]init];
+    self.pointArray = [[NSMutableArray alloc]init];
     [self setNeedsDisplay];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touches Canelled");
+    
 }
-
-@synthesize mainImageView;
 
 @synthesize tempImageView;
 
 @synthesize instrument;
+
+@synthesize pointArray;
 
 @end

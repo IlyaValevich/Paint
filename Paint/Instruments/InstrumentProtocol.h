@@ -7,21 +7,12 @@
 //
 
 @protocol InstrumentProtocol
+/*Instrument writes to a temp image from CustomView.Using line array to painting algorint.*/
 
-@property (nonatomic,readwrite) NSMutableArray *pointArray;
 @property (nonatomic,readwrite) NSMutableArray *lineArray;
 @property (nonatomic,readwrite) CGPoint myBeginPoint;
 @property (nonatomic,readwrite) UIImageView* tempImageView;
 
-
-- (UIImage *)draw;
+- (void)draw;
 - (id)init:(UIImageView*) tempImageView;
-
-
-//- (id)init:(CGContextRef) context mainImageView:
-/*
-- (void)setContext:(CGContextRef) context;
-- (void)setMainImageView:(UIImageView*) mainImageView;
-- (void)setTempImageView:(UIImageView*) tempImageView;
-*/
 @end

@@ -9,7 +9,7 @@
 
 
 @interface PointInstrument : NSObject <InstrumentProtocol>{
-    NSMutableArray *pointArray;
+
     NSMutableArray *lineArray;
     CGPoint myBeginPoint;
     UIImageView* tempImageView;
@@ -22,31 +22,30 @@
 - (id)init
 {
     if (self = [super init]) {
-        pointArray=[[NSMutableArray alloc]init];
         lineArray=[[NSMutableArray alloc]init];
     }
     return self;
 }
 
 
-- (id)init:(UIImageView *)mainImageView {
+- (id)init:(UIImageView *)mainImageView
+{
     if (self = [super init]) {
-        self.pointArray=[[NSMutableArray alloc]init];
+        //self.pointArray=[[NSMutableArray alloc]init];
         self.lineArray=[[NSMutableArray alloc]init];
         self.tempImageView = mainImageView;
     }
     return self;
 }
 
-- (UIImage *)draw {
-  
+- (void)draw
+{
     tempImageView.clearsContextBeforeDrawing = NO;
     UIGraphicsBeginImageContext(tempImageView.frame.size);
     [tempImageView.image drawAtPoint:CGPointZero];
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
     [[UIColor greenColor] setStroke];
+    
     CGContextSaveGState(context);
     CGContextBeginPath(context);
     CGContextSetLineWidth(context, 8.0f);
@@ -90,15 +89,9 @@
     */
     CGContextRestoreGState(context);
  
-    
     tempImageView.image = UIGraphicsGetImageFromCurrentImageContext();
-    
     UIGraphicsEndImageContext();
-    
     [tempImageView setNeedsDisplay];
-    
-    return tempImageView.image;
-    
 }
 
 
@@ -109,10 +102,8 @@
 
 @synthesize myBeginPoint;
 
-@synthesize pointArray;
-
 @synthesize tempImageView;
 
-
-
 @end
+
+

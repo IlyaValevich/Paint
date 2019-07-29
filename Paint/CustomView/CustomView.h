@@ -10,9 +10,9 @@
 #import "InstrumentProtocol.h"
 
 @interface CustomView : UIView
-@property (nonatomic,readwrite) UIImageView* mainImageView;
 @property (nonatomic,readwrite) UIImageView* tempImageView;
 @property (nonatomic,readwrite) id <InstrumentProtocol> instrument;
+@property (nonatomic,readwrite) NSMutableArray *pointArray;
 
 @end
 

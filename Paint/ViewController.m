@@ -19,12 +19,11 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
-    
     self.customView = [[CustomView alloc]initWithFrame:CGRectZero];
-    
     [self.view addSubview:self.customView];
     
     self.pointButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -40,7 +39,6 @@
     [self.lineButton addTarget:self action:@selector(lineButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
     self.ellipseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.ellipseButton.frame = CGRectMake(165.6, 800, 82.8, 82.8);
     [self.ellipseButton setBackgroundImage:[UIImage imageNamed:@"ellipse_logo.png"] forState: UIControlStateNormal];
     [self.ellipseButton setBackgroundImage:[UIImage imageNamed:@"ellipse_logo_selected.png"] forState: UIControlStateSelected];
     [self.view addSubview:self.ellipseButton];
@@ -57,63 +55,69 @@
     [self.starButton setBackgroundImage:[UIImage imageNamed:@"star_logo_selected.png"] forState: UIControlStateSelected];
     [self.view addSubview:self.starButton];
     [self.starButton addTarget:self action:@selector(starButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.clearButton setBackgroundImage:[UIImage imageNamed:@"eraser_logo.png"] forState: UIControlStateNormal];
+    [self.view addSubview:self.clearButton];
+    [self.clearButton addTarget:self action:@selector(clearButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    
     [self setupContsraints];
 }
 
 -(void)pointButtonAction
 {
-    self.customView.instrument =[[PointInstrument alloc]init:self.customView.mainImageView];
-    
+    self.customView.instrument =[[PointInstrument alloc]init:self.customView.tempImageView];
     [self selectButton:self.pointButton];
 }
 
 -(void)lineButtonAction
 {
-    self.customView.instrument = [[LineInstrument alloc]init:self.customView.mainImageView];
+    self.customView.instrument = [[LineInstrument alloc]init:self.customView.tempImageView];
     [self selectButton:self.lineButton];;
 }
 
 -(void)ellipseButtonAction
 {
-    self.customView.instrument = [[EllipseInstrument alloc]init:self.customView.mainImageView];
+    self.customView.instrument = [[EllipseInstrument alloc]init:self.customView.tempImageView];
     [self selectButton:self.ellipseButton];
 }
 
 -(void)squareButtonAction
 {
-    self.customView.instrument = [[SquareInstrument alloc]init:self.customView.mainImageView];
+    self.customView.instrument = [[SquareInstrument alloc]init:self.customView.tempImageView];
     [self selectButton:self.squareButton];
 }
 
 -(void)starButtonAction
 {
-    self.customView.instrument = [[StarInstrument alloc]init:self.customView.mainImageView];
+    self.customView.instrument = [[StarInstrument alloc]init:self.customView.tempImageView];
     [self selectButton:self.starButton];
 }
 
--(void)selectButton:(UIButton*)newButton{
-    
+-(void)clearButtonAction
+{
+    self.customView.tempImageView.image = nil;
+    self.customView.tempImageView.image = nil;
+    self.customView.pointArray=[[NSMutableArray alloc]init];
+    self.customView.instrument.lineArray=[[NSMutableArray alloc]init];
+}
+
+-(void)selectButton:(UIButton*)newButton
+{
     [self.selectedButton setSelected:NO];
     self.selectedButton = newButton;
     [self.selectedButton setSelected:YES];
 }
 
--(void) setupContsraints{
+-(void) setupContsraints
+{
     self.customView.translatesAutoresizingMaskIntoConstraints = false;
-    self.customView.mainImageView.translatesAutoresizingMaskIntoConstraints = false;
     self.customView.tempImageView.translatesAutoresizingMaskIntoConstraints = false;
 
     [self.customView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant: 0].active = YES;
     [self.customView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant: 0].active = YES;
     [self.customView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor constant: -64].active = YES;
     [self.customView.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor constant: 64].active = YES;
-
-    
-    [self.customView.mainImageView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant: 0].active = YES;
-    [self.customView.mainImageView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant: 0].active = YES;
-    [self.customView.mainImageView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor constant: -64].active = YES;
-    [self.customView.mainImageView.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor constant: 64].active = YES;
-    //self.customView.mainImageView.image = [UIImage imageNamed:@"center_test.png"];
     
     [self.customView.tempImageView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant: 0].active = YES;
     [self.customView.tempImageView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant: 0].active = YES;
@@ -125,6 +129,7 @@
     self.ellipseButton.translatesAutoresizingMaskIntoConstraints = false;
     self.squareButton.translatesAutoresizingMaskIntoConstraints = false;
     self.starButton.translatesAutoresizingMaskIntoConstraints = false;
+    self.clearButton.translatesAutoresizingMaskIntoConstraints = false;
     
     [self.pointButton.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-30].active = YES;
     [self.pointButton.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor ].active = YES;
@@ -150,7 +155,11 @@
     [self.starButton.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor constant: 0].active = YES;
     [self.starButton.heightAnchor constraintEqualToAnchor:self.starButton.widthAnchor multiplier:1.0 constant:0].active = YES;
     [self.starButton.heightAnchor constraintEqualToAnchor:self.squareButton.heightAnchor multiplier:1.0 constant:0].active = YES;
-   
+    
+    [self.clearButton.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:40].active = YES;
+    [self.clearButton.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor constant: 0].active = YES;
+    [self.clearButton.heightAnchor constraintEqualToAnchor:self.clearButton.widthAnchor multiplier:1.0 constant:0].active = YES;
+    [self.clearButton.heightAnchor constraintEqualToAnchor:self.pointButton.heightAnchor multiplier:1.0 constant:0].active = YES;
 }
 
 @end
