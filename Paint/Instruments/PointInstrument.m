@@ -8,28 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "PointInstrument.h"
-#import <UIKit/UIKit.h>
 
 @implementation PointInstrument
 
-- (id)init
-{
-    if (self = [super init]) {
-        lineArray=[[NSMutableArray alloc]init];
-    }
-    return self;
-}
+@synthesize lineArray;
+@synthesize myBeginPoint;
+@synthesize tempImageView;
 
-
-- (id)init:(UIImageView *)mainImageView
-{
-    if (self = [super init]) {
-        //self.pointArray=[[NSMutableArray alloc]init];
-        self.lineArray=[[NSMutableArray alloc]init];
-        self.tempImageView = mainImageView;
-    }
-    return self;
-}
 
 - (void)draw
 {
@@ -74,13 +59,5 @@
 }
 
 
-
-
-
-@synthesize lineArray;
-
-@synthesize myBeginPoint;
-
-@synthesize tempImageView;
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright © 2019 Ilya. All rights reserved.
 //
 
-#import "InstrumentProtocol.h"
+#import "Instrument.h"
 
-@interface PointInstrument : NSObject <InstrumentProtocol>
+@interface PointInstrument : Instrument
 
 @end
 

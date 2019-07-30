@@ -12,22 +12,9 @@
 
 @implementation SquareInstrument
 
-- (id)init
-{
-    if (self = [super init]) {
-        lineArray=[[NSMutableArray alloc]init];
-    }
-    return self;
-}
-
-- (id)init:(UIImageView *)tempImageView
-{
-    if (self = [super init]) {
-        self.lineArray=[[NSMutableArray alloc]init];
-        self.tempImageView = tempImageView;
-    }
-    return self;
-}
+@synthesize lineArray;
+@synthesize myBeginPoint;
+@synthesize tempImageView;
 
 - (void)draw
 {
@@ -66,11 +53,5 @@
     UIGraphicsEndImageContext();
     [tempImageView setNeedsDisplay];
 }
-
-@synthesize lineArray;
-
-@synthesize myBeginPoint;
-
-@synthesize tempImageView;
 
 @end
