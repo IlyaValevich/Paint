@@ -25,6 +25,13 @@
     self.stackView = [[UIStackView alloc] init];
     [self.view addSubview:self.customView];
     
+    self.instrumentsArray = [NSMutableArray array];
+    [self.instrumentsArray insertObject:[[PointInstrument alloc] init:self.customView.tempImageView] atIndex:0];
+    [self.instrumentsArray insertObject:[[LineInstrument alloc] init:self.customView.tempImageView] atIndex:1];
+    [self.instrumentsArray insertObject:[[EllipseInstrument alloc] init:self.customView.tempImageView] atIndex:2];
+    [self.instrumentsArray insertObject:[[SquareInstrument alloc] init:self.customView.tempImageView] atIndex:3];
+    [self.instrumentsArray insertObject:[[StarInstrument alloc] init:self.customView.tempImageView] atIndex:4];
+    
     self.pointButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.pointButton setBackgroundImage:[UIImage imageNamed:@"point_logo.png"] forState: UIControlStateNormal];
     [self.pointButton setBackgroundImage:[UIImage imageNamed:@"point_logo_selected.png"] forState: UIControlStateSelected];
@@ -70,26 +77,7 @@
 
 -(void)buttonAction:(UIButton* ) button
 {
-    switch (button.tag) {
-        case 0:
-            self.customView.instrument = [[PointInstrument alloc] init:self.customView.tempImageView];
-            break;
-        case 1:
-            self.customView.instrument = [[LineInstrument alloc] init:self.customView.tempImageView];
-            break;
-        case 2:
-            self.customView.instrument = [[EllipseInstrument alloc] init:self.customView.tempImageView];
-            break;
-        case 3:
-            self.customView.instrument = [[SquareInstrument alloc] init:self.customView.tempImageView];
-            break;
-        case 4:
-            self.customView.instrument = [[StarInstrument alloc] init:self.customView.tempImageView];
-            break;
-            
-        default:
-            break;
-    }
+    self.customView.instrument = self.instrumentsArray[button.tag];
     [self selectButton:button];
 }
 
