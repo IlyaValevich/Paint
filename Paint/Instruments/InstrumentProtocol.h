@@ -6,6 +6,8 @@
 //  Copyright © 2019 Ilya. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 @protocol InstrumentProtocol
 /*Instrument writes to a temp image from CustomView.Using line array to painting algorint.*/
 

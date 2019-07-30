@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0964622422F02485002C7569 /* PointInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0964622322F02485002C7569 /* PointInstrument.m */; };
+		0964622622F02495002C7569 /* LineInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0964622522F02495002C7569 /* LineInstrument.m */; };
+		0964622822F024A7002C7569 /* EllipseInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0964622722F024A7002C7569 /* EllipseInstrument.m */; };
+		0964622A22F024B3002C7569 /* SquareInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0964622922F024B3002C7569 /* SquareInstrument.m */; };
+		0964622C22F024C0002C7569 /* StarInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0964622B22F024C0002C7569 /* StarInstrument.m */; };
 		09A37E4322E882660075C43B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A37E4222E882660075C43B /* AppDelegate.m */; };
 		09A37E4622E882660075C43B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A37E4522E882660075C43B /* ViewController.m */; };
 		09A37E4922E882660075C43B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A37E4722E882660075C43B /* Main.storyboard */; };
@@ -18,6 +23,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0964622322F02485002C7569 /* PointInstrument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PointInstrument.m; sourceTree = "<group>"; };
+		0964622522F02495002C7569 /* LineInstrument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineInstrument.m; sourceTree = "<group>"; };
+		0964622722F024A7002C7569 /* EllipseInstrument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EllipseInstrument.m; sourceTree = "<group>"; };
+		0964622922F024B3002C7569 /* SquareInstrument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SquareInstrument.m; sourceTree = "<group>"; };
+		0964622B22F024C0002C7569 /* StarInstrument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarInstrument.m; sourceTree = "<group>"; };
 		09A37E3E22E882660075C43B /* Paint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A37E4122E882660075C43B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		09A37E4222E882660075C43B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -99,10 +109,15 @@
 			children = (
 				09A37E6022E89D9A0075C43B /* InstrumentProtocol.h */,
 				09A37E6122E8A2460075C43B /* PointInstrument.h */,
+				0964622322F02485002C7569 /* PointInstrument.m */,
 				09A37E6422E9981C0075C43B /* LineInstrument.h */,
+				0964622522F02495002C7569 /* LineInstrument.m */,
 				09A37E6522E9A22A0075C43B /* EllipseInstrument.h */,
+				0964622722F024A7002C7569 /* EllipseInstrument.m */,
 				09A37E6622E9AC4D0075C43B /* SquareInstrument.h */,
+				0964622922F024B3002C7569 /* SquareInstrument.m */,
 				09A37E6722E9BC810075C43B /* StarInstrument.h */,
+				0964622B22F024C0002C7569 /* StarInstrument.m */,
 			);
 			path = Instruments;
 			sourceTree = "<group>";
@@ -177,11 +192,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0964622C22F024C0002C7569 /* StarInstrument.m in Sources */,
 				09A37E5C22E887250075C43B /* CustomView.m in Sources */,
 				09A37E4C22E882660075C43B /* Paint.xcdatamodeld in Sources */,
 				09A37E4622E882660075C43B /* ViewController.m in Sources */,
 				09A37E5422E882670075C43B /* main.m in Sources */,
 				09A37E4322E882660075C43B /* AppDelegate.m in Sources */,
+				0964622822F024A7002C7569 /* EllipseInstrument.m in Sources */,
+				0964622A22F024B3002C7569 /* SquareInstrument.m in Sources */,
+				0964622622F02495002C7569 /* LineInstrument.m in Sources */,
+				0964622422F02485002C7569 /* PointInstrument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@
 #import "Instruments/InstrumentProtocol.h"
 @interface ViewController : UIViewController;
 @property (nonatomic,strong) CustomView *customView;
+@property (nonatomic,strong) UIStackView *stackView;
 @property (nonatomic,strong) UIButton *pointButton;
 @property (nonatomic,strong) UIButton *lineButton;
 @property (nonatomic,strong) UIButton *ellipseButton;
