@@ -13,6 +13,7 @@
 @property (nonatomic,readwrite) UIImageView* tempImageView;
 @property (nonatomic,readwrite) id <InstrumentProtocol> instrument;
 @property (nonatomic,readwrite) NSMutableArray *pointArray;
+@property (nonatomic,strong) NSMutableArray<Figure *> *figuresArray;
 
 @end
 

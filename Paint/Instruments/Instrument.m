@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Instrument.h"
+#import "Figure.h"
 
 @implementation Instrument
 
@@ -33,9 +34,10 @@
     return self;
 }
 
-- (void)draw
+- (Figure*)makeFigure
 {
-    
+    NSLog(@"that's cannot be happen");
+    return [[Figure alloc] init];
 }
 
 @end

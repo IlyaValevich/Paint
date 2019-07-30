@@ -37,10 +37,11 @@
                 CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
                 
                 CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
-                
-                // CGRect rect = CGRectMake (myEndPoint.x, myStartPoint.y, (myStartPoint.x - myEndPoint.x), (myEndPoint.y - myStartPoint.y));
-                
-                CGRect rect = CGRectMake (myStartPoint.x, myStartPoint.y, (myEndPoint.x - myStartPoint.x), (myEndPoint.y - myStartPoint.y));
+
+                CGRect rect = CGRectMake (myStartPoint.x,
+                                          myStartPoint.y,
+                                          myEndPoint.x - myStartPoint.x,
+                                          myEndPoint.y - myStartPoint.y);
                 CGContextAddEllipseInRect(context, rect);
                 CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
                 CGContextSetLineWidth(context, 8.0);

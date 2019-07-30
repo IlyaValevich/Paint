@@ -13,6 +13,7 @@
 		0964622A22F024B3002C7569 /* SquareInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0964622922F024B3002C7569 /* SquareInstrument.m */; };
 		0964622C22F024C0002C7569 /* StarInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0964622B22F024C0002C7569 /* StarInstrument.m */; };
 		0964622E22F034B0002C7569 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0964622D22F034B0002C7569 /* Instrument.m */; };
+		0964623522F06A95002C7569 /* Figure.m in Sources */ = {isa = PBXBuildFile; fileRef = 0964623422F06A95002C7569 /* Figure.m */; };
 		09A37E4322E882660075C43B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A37E4222E882660075C43B /* AppDelegate.m */; };
 		09A37E4622E882660075C43B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A37E4522E882660075C43B /* ViewController.m */; };
 		09A37E4922E882660075C43B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A37E4722E882660075C43B /* Main.storyboard */; };
@@ -31,6 +32,8 @@
 		0964622B22F024C0002C7569 /* StarInstrument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarInstrument.m; sourceTree = "<group>"; };
 		0964622D22F034B0002C7569 /* Instrument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
 		0964622F22F0353C002C7569 /* Instrument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
+		0964623322F069EF002C7569 /* Figure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Figure.h; sourceTree = "<group>"; };
+		0964623422F06A95002C7569 /* Figure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Figure.m; sourceTree = "<group>"; };
 		09A37E3E22E882660075C43B /* Paint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A37E4122E882660075C43B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		09A37E4222E882660075C43B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -93,8 +96,10 @@
 			children = (
 				09779DFA22EEF0670031553F /* CustomView */,
 				09A37E5F22E89C8B0075C43B /* Instruments */,
-				09A37E4122E882660075C43B /* AppDelegate.h */,
 				09A37E4222E882660075C43B /* AppDelegate.m */,
+				09A37E4122E882660075C43B /* AppDelegate.h */,
+				0964623322F069EF002C7569 /* Figure.h */,
+				0964623422F06A95002C7569 /* Figure.m */,
 				09A37E4422E882660075C43B /* ViewController.h */,
 				09A37E4522E882660075C43B /* ViewController.m */,
 				09A37E4722E882660075C43B /* Main.storyboard */,
@@ -206,6 +211,7 @@
 				09A37E4322E882660075C43B /* AppDelegate.m in Sources */,
 				0964622822F024A7002C7569 /* EllipseInstrument.m in Sources */,
 				0964622A22F024B3002C7569 /* SquareInstrument.m in Sources */,
+				0964623522F06A95002C7569 /* Figure.m in Sources */,
 				0964622622F02495002C7569 /* LineInstrument.m in Sources */,
 				0964622422F02485002C7569 /* PointInstrument.m in Sources */,
 			);

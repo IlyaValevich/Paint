@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "LineInstrument.h"
+#import "Figure.h"
+
+@interface LineInstrument()
+@property (nonatomic,readwrite) CGPoint myEndPoint;
+@end
 
 @implementation LineInstrument
 
@@ -15,17 +20,17 @@
 @synthesize myBeginPoint;
 @synthesize tempImageView;
 
-- (void)draw
+- (Figure*)makeFigure
 {
-    tempImageView.clearsContextBeforeDrawing = NO;
-    UIGraphicsBeginImageContext(tempImageView.frame.size);
-    [tempImageView.image drawAtPoint:CGPointZero];
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
-    [[UIColor redColor] setStroke];
+    CGMutablePathRef path = CGPathCreateMutable();
+    [[UIColor greenColor] setStroke];
     
     CGContextSaveGState(context);
     CGContextBeginPath(context);
     CGContextSetLineWidth(context, 8.0f);
+    
     CGContextSetLineJoin(context, kCGLineJoinRound);
     CGContextSetLineCap(context, kCGLineCapRound);
     
@@ -34,11 +39,11 @@
             NSArray * array = [NSArray arrayWithArray:[lineArray objectAtIndex:i]];
             if ([array count] > 0) {
                 CGContextBeginPath(context);
-                CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
+                myBeginPoint = CGPointFromString([array objectAtIndex:0]);
+                CGPathMoveToPoint(path, NULL, myBeginPoint.x, myBeginPoint.y);
                 
-                CGContextMoveToPoint(context, myStartPoint.x, myStartPoint.y);
                 CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
-                CGContextAddLineToPoint(context, myEndPoint.x,myEndPoint.y);
+                CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
                 
                 
                 CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
@@ -50,9 +55,12 @@
 
     CGContextDrawPath(context, kCGPathFillStroke);
     CGContextRestoreGState(context);
-    tempImageView.image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [tempImageView setNeedsDisplay];
+
+    return [[Figure alloc] init:CGRectMake(self.myBeginPoint.x,
+                                           self.myBeginPoint.x,
+                                            myBeginPoint.x - 1000,
+                                            myBeginPoint.y - 1000)
+                           path:path];
 }
 
 @end

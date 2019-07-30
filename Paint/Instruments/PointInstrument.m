@@ -16,12 +16,13 @@
 @synthesize tempImageView;
 
 
-- (void)draw
+- (Figure*)makeFigure
 {
-    tempImageView.clearsContextBeforeDrawing = NO;
-    UIGraphicsBeginImageContext(tempImageView.frame.size);
-    [tempImageView.image drawAtPoint:CGPointZero];
+
+   
+ 
     CGContextRef context = UIGraphicsGetCurrentContext();
+    CGMutablePathRef path = CGPathCreateMutable();
     [[UIColor greenColor] setStroke];
     
     CGContextSaveGState(context);
@@ -36,12 +37,12 @@
             NSArray * array = [NSArray arrayWithArray:[lineArray objectAtIndex:i]];
             if ([array count] > 0) {
                 CGContextBeginPath(context);
-                CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
-                CGContextMoveToPoint(context, myStartPoint.x, myStartPoint.y);
+                myBeginPoint = CGPointFromString([array objectAtIndex:0]);
+                CGPathMoveToPoint(path, NULL, self.myBeginPoint.x, self.myBeginPoint.y);
                 
                 for (int j = 0; j < [array count] - 1; j++) {
                     CGPoint myEndPoint = CGPointFromString([array objectAtIndex:j+1]);
-                    CGContextAddLineToPoint(context, myEndPoint.x,myEndPoint.y);
+                    CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
                 }
                 
                 CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
@@ -53,9 +54,13 @@
     
     CGContextRestoreGState(context);
     
-    tempImageView.image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [tempImageView setNeedsDisplay];
+
+    CGContextAddPath(context, path);
+    CGContextSetStrokeColorWithColor(context,[UIColor blackColor].CGColor);
+    CGContextStrokePath(context);
+    //CGPathRelease(path);
+    
+    return [[Figure alloc] init:tempImageView.bounds  path:path];
 }
 
 

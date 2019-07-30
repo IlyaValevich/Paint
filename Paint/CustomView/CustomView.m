@@ -8,11 +8,13 @@
 
 #import "CustomView.h"
 #import "InstrumentProtocol.h"
+#import "Figure.h"
 
 @interface CustomView(){
     UIImageView* tempImageView;
     id <InstrumentProtocol> instrument;
     NSMutableArray *pointArray;
+    NSMutableArray<Figure *> *figuresArray;
 }
 @end
 
@@ -23,6 +25,7 @@
     if (self = [super init]) {
         tempImageView = nil;
         pointArray=[[NSMutableArray alloc]init];
+        figuresArray = [NSMutableArray array];
     }
     return self;
 }
@@ -35,6 +38,7 @@
         tempImageView.backgroundColor = [UIColor clearColor];
         [self addSubview:tempImageView];
         pointArray=[[NSMutableArray alloc]init];
+        figuresArray = [NSMutableArray array];
     }
     return self;
 }
@@ -42,12 +46,18 @@
 -(void) drawRect:(CGRect)rect
 {
     self.clearsContextBeforeDrawing = NO;
-    [self.instrument draw];
+    
+    
+    for (Figure *figure in figuresArray) {
+        [figure draw];
+    }
+    
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self setNeedsDisplay];
+    //[self setNeedsDisplay];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -56,8 +66,7 @@
     self.instrument.myBeginPoint = [touch locationInView:self];
     NSString *sPoint = NSStringFromCGPoint(self.instrument.myBeginPoint);
     [self.pointArray addObject:sPoint];
-
-    [self setNeedsDisplay];
+    //[self setNeedsDisplay];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -65,7 +74,10 @@
     NSArray *array = [NSArray arrayWithArray:self.pointArray];
     [self.instrument.lineArray addObject:array];
     self.pointArray = [[NSMutableArray alloc]init];
-    [self setNeedsDisplay];
+    
+    Figure *temp = [self.instrument makeFigure];
+    [figuresArray addObject:temp];
+    [self setNeedsDisplayInRect:temp.rect];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event

@@ -25,52 +25,81 @@
     self.stackView = [[UIStackView alloc] init];
     [self.view addSubview:self.customView];
     
-    self.instrumentsArray = [NSMutableArray array];
-    [self.instrumentsArray insertObject:[[PointInstrument alloc] init:self.customView.tempImageView] atIndex:0];
-    [self.instrumentsArray insertObject:[[LineInstrument alloc] init:self.customView.tempImageView] atIndex:1];
-    [self.instrumentsArray insertObject:[[EllipseInstrument alloc] init:self.customView.tempImageView] atIndex:2];
-    [self.instrumentsArray insertObject:[[SquareInstrument alloc] init:self.customView.tempImageView] atIndex:3];
-    [self.instrumentsArray insertObject:[[StarInstrument alloc] init:self.customView.tempImageView] atIndex:4];
+    self.instrumentsArray = [[NSMutableArray alloc] init];
+    //remove!!!!!!!!!!!!
+    [self.instrumentsArray insertObject:[[PointInstrument alloc] init:self.customView.tempImageView]
+                                atIndex:0];
+    [self.instrumentsArray insertObject:[[LineInstrument alloc] init:self.customView.tempImageView]
+                                atIndex:1];
+    [self.instrumentsArray insertObject:[[EllipseInstrument alloc] init:self.customView.tempImageView]
+                                atIndex:2];
+    [self.instrumentsArray insertObject:[[SquareInstrument alloc] init:self.customView.tempImageView]
+                                atIndex:3];
+    [self.instrumentsArray insertObject:[[StarInstrument alloc] init:self.customView.tempImageView]
+                                atIndex:4];
     
     self.pointButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.pointButton setBackgroundImage:[UIImage imageNamed:@"point_logo.png"] forState: UIControlStateNormal];
-    [self.pointButton setBackgroundImage:[UIImage imageNamed:@"point_logo_selected.png"] forState: UIControlStateSelected];
+    [self.pointButton setBackgroundImage:[UIImage imageNamed:@"point_logo.png"]
+                                forState: UIControlStateNormal];
+    [self.pointButton setBackgroundImage:[UIImage imageNamed:@"point_logo_selected.png"]
+                                forState: UIControlStateSelected];
     [self.view addSubview:self.pointButton];
     self.pointButton.tag = 0;
-    [self.pointButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.pointButton addTarget:self
+                         action:@selector(buttonAction:)
+               forControlEvents:UIControlEventTouchUpInside];
     
     self.lineButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.lineButton setBackgroundImage:[UIImage imageNamed:@"line_logo.png"] forState: UIControlStateNormal];
-    [self.lineButton setBackgroundImage:[UIImage imageNamed:@"line_logo_selected.png"] forState: UIControlStateSelected];
+    [self.lineButton setBackgroundImage:[UIImage imageNamed:@"line_logo.png"]
+                               forState: UIControlStateNormal];
+    [self.lineButton setBackgroundImage:[UIImage imageNamed:@"line_logo_selected.png"]
+                               forState: UIControlStateSelected];
     [self.view addSubview:self.lineButton];
     self.lineButton.tag = 1;
-    [self.lineButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.lineButton addTarget:self
+                        action:@selector(buttonAction:)
+              forControlEvents:UIControlEventTouchUpInside];
     
     self.ellipseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.ellipseButton setBackgroundImage:[UIImage imageNamed:@"ellipse_logo.png"] forState: UIControlStateNormal];
-    [self.ellipseButton setBackgroundImage:[UIImage imageNamed:@"ellipse_logo_selected.png"] forState: UIControlStateSelected];
+    [self.ellipseButton setBackgroundImage:[UIImage imageNamed:@"ellipse_logo.png"]
+                                  forState: UIControlStateNormal];
+    [self.ellipseButton setBackgroundImage:[UIImage imageNamed:@"ellipse_logo_selected.png"]
+                                  forState: UIControlStateSelected];
     [self.view addSubview:self.ellipseButton];
     self.ellipseButton.tag = 2;
-    [self.ellipseButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.ellipseButton addTarget:self
+                           action:@selector(buttonAction:)
+                 forControlEvents:UIControlEventTouchUpInside];
     
     self.squareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.squareButton setBackgroundImage:[UIImage imageNamed:@"square_logo.png"] forState: UIControlStateNormal];
-    [self.squareButton setBackgroundImage:[UIImage imageNamed:@"square_logo_selected.png"] forState: UIControlStateSelected];
+    [self.squareButton setBackgroundImage:[UIImage imageNamed:@"square_logo.png"]
+                                 forState: UIControlStateNormal];
+    [self.squareButton setBackgroundImage:[UIImage imageNamed:@"square_logo_selected.png"]
+                                 forState: UIControlStateSelected];
     [self.view addSubview:self.squareButton];
     self.squareButton.tag = 3;
-    [self.squareButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.squareButton addTarget:self
+                          action:@selector(buttonAction:)
+                forControlEvents:UIControlEventTouchUpInside];
     
     self.starButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.starButton setBackgroundImage:[UIImage imageNamed:@"star_logo.png"] forState: UIControlStateNormal];
-    [self.starButton setBackgroundImage:[UIImage imageNamed:@"star_logo_selected.png"] forState: UIControlStateSelected];
+    [self.starButton setBackgroundImage:[UIImage imageNamed:@"star_logo.png"]
+                               forState: UIControlStateNormal];
+    [self.starButton setBackgroundImage:[UIImage imageNamed:@"star_logo_selected.png"]
+                               forState: UIControlStateSelected];
     [self.view addSubview:self.starButton];
     self.starButton.tag = 4;
-    [self.starButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.starButton addTarget:self
+                        action:@selector(buttonAction:)
+              forControlEvents:UIControlEventTouchUpInside];
     
     self.clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.clearButton setBackgroundImage:[UIImage imageNamed:@"eraser_logo.png"] forState: UIControlStateNormal];
+    [self.clearButton setBackgroundImage:[UIImage imageNamed:@"eraser_logo.png"]
+                                forState: UIControlStateNormal];
     [self.view addSubview:self.clearButton];
-    [self.clearButton addTarget:self action:@selector(clearButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.clearButton addTarget:self
+                         action:@selector(clearButtonAction)
+               forControlEvents:UIControlEventTouchUpInside];
     
     [self setupContsraints];
 }

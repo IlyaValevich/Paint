@@ -43,7 +43,9 @@
                 CGFloat yCenter = (myStartPoint.y + (myEndPoint.y - myStartPoint.y)/2 );
                 
                 
-                float w = sqrt(pow((myEndPoint.x - myStartPoint.x),2) + pow((myEndPoint.y - myStartPoint.y),2)) ;
+                float w = sqrt(
+                               pow((myEndPoint.x - myStartPoint.x),2)+
+                               pow((myEndPoint.y - myStartPoint.y),2)) ;
                 double r = w / 2.0;
                 float flip = -1.0;
                 
@@ -68,10 +70,13 @@
                 CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
                 CGContextSetLineWidth(context, 8.0);
                 CGContextStrokePath(context);
+                
+                
+                
             }
         }
     }
-    
+
     tempImageView.image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [tempImageView setNeedsDisplay];
