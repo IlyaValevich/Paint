@@ -13,8 +13,7 @@
 @implementation Instrument
 
 @synthesize lineArray;
-@synthesize myBeginPoint;
-@synthesize tempImageView;
+@synthesize mainView;
 
 - (id)init
 {
@@ -25,18 +24,17 @@
 }
 
 
-- (id)init:(UIImageView *)tempImageView
+- (id)init:(UIView *)mainView
 {
     if (self = [super init]) {
         self.lineArray=[[NSMutableArray alloc]init];
-        self.tempImageView = tempImageView;
+        self.mainView = mainView;
     }
     return self;
 }
 
 - (Figure*)makeFigure
 {
-    NSLog(@"that's cannot be happen");
     return [[Figure alloc] init];
 }
 

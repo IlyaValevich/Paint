@@ -66,6 +66,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		095F6C7522F1807E00256A02 /* Figure */ = {
+			isa = PBXGroup;
+			children = (
+				0964623322F069EF002C7569 /* Figure.h */,
+				0964623422F06A95002C7569 /* Figure.m */,
+			);
+			path = Figure;
+			sourceTree = "<group>";
+		};
+		095F6C7622F180CA00256A02 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				09A37E4122E882660075C43B /* AppDelegate.h */,
+				09A37E4222E882660075C43B /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		095F6C7722F180DF00256A02 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09A37E4522E882660075C43B /* ViewController.m */,
+				09A37E4422E882660075C43B /* ViewController.h */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		09779DFA22EEF0670031553F /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,14 +121,11 @@
 		09A37E4022E882660075C43B /* Paint */ = {
 			isa = PBXGroup;
 			children = (
+				095F6C7722F180DF00256A02 /* ViewController */,
 				09779DFA22EEF0670031553F /* CustomView */,
 				09A37E5F22E89C8B0075C43B /* Instruments */,
-				09A37E4222E882660075C43B /* AppDelegate.m */,
-				09A37E4122E882660075C43B /* AppDelegate.h */,
-				0964623322F069EF002C7569 /* Figure.h */,
-				0964623422F06A95002C7569 /* Figure.m */,
-				09A37E4422E882660075C43B /* ViewController.h */,
-				09A37E4522E882660075C43B /* ViewController.m */,
+				095F6C7522F1807E00256A02 /* Figure */,
+				095F6C7622F180CA00256A02 /* AppDelegate */,
 				09A37E4722E882660075C43B /* Main.storyboard */,
 				09A37E4D22E882670075C43B /* Assets.xcassets */,
 				09A37E4F22E882670075C43B /* LaunchScreen.storyboard */,

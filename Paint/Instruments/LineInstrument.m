@@ -10,57 +10,63 @@
 #import "LineInstrument.h"
 #import "Figure.h"
 
-@interface LineInstrument()
-@property (nonatomic,readwrite) CGPoint myEndPoint;
-@end
-
 @implementation LineInstrument
 
 @synthesize lineArray;
-@synthesize myBeginPoint;
-@synthesize tempImageView;
+@synthesize rect;
 
 - (Figure*)makeFigure
 {
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
     CGMutablePathRef path = CGPathCreateMutable();
-    [[UIColor greenColor] setStroke];
-    
-    CGContextSaveGState(context);
-    CGContextBeginPath(context);
-    CGContextSetLineWidth(context, 8.0f);
-    
-    CGContextSetLineJoin(context, kCGLineJoinRound);
-    CGContextSetLineCap(context, kCGLineCapRound);
-    
+
     if ([lineArray count] > 0) {
         for (int i = 0; i < [lineArray count]; i++) {
             NSArray * array = [NSArray arrayWithArray:[lineArray objectAtIndex:i]];
             if ([array count] > 0) {
-                CGContextBeginPath(context);
-                myBeginPoint = CGPointFromString([array objectAtIndex:0]);
-                CGPathMoveToPoint(path, NULL, myBeginPoint.x, myBeginPoint.y);
-                
+                CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
                 CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
+                
+                CGPathMoveToPoint(path, NULL, myStartPoint.x, myStartPoint.y);
                 CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
                 
+                CGFloat h = myEndPoint.x - myStartPoint.x;
+                CGFloat w = myEndPoint.y - myStartPoint.y;
                 
-                CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
-                CGContextSetLineWidth(context, 8.0);
-                CGContextStrokePath(context);
+                [self calcPoints:&myStartPoint endPoint:&myEndPoint];
+                
+                rect = CGRectMake(myStartPoint.x,
+                                  myStartPoint.y,
+                                  fabs(h),
+                                  fabs(w));
+
             }
         }
     }
-
-    CGContextDrawPath(context, kCGPathFillStroke);
-    CGContextRestoreGState(context);
-
-    return [[Figure alloc] init:CGRectMake(self.myBeginPoint.x,
-                                           self.myBeginPoint.x,
-                                            myBeginPoint.x - 1000,
-                                            myBeginPoint.y - 1000)
-                           path:path];
+   
+    [self calcRect:&rect];
+    
+    return [[Figure alloc] init:rect path:path];
 }
 
+- (void)calcRect:(CGRect*) rect
+{
+    rect->origin.x -= 5;
+    rect->origin.y -= 5;
+    rect->size.height += 10;
+    rect->size.width += 10;
+}
+
+- (void)calcPoints:(CGPoint*) startPoint endPoint:(CGPoint*) endPoint
+{
+    if(startPoint->x > endPoint->x){
+        CGFloat temp = startPoint->x;
+        startPoint->x = endPoint->x;
+        endPoint->x = temp;
+    }
+    if (startPoint->y > endPoint->y) {
+        CGFloat temp = startPoint->x;
+        startPoint->y = endPoint->y;
+        endPoint->y = temp;
+    }
+}
 @end

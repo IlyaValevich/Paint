@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomView.h"
-#import "Instruments/Instrument.h"
+
 @interface ViewController : UIViewController;
 @property (nonatomic,strong) CustomView *customView;
 @property (nonatomic,strong) UIStackView *stackView;
@@ -19,6 +19,5 @@
 @property (nonatomic,strong) UIButton *starButton;
 @property (nonatomic,strong) UIButton *clearButton;
 @property (nonatomic,strong) UIButton *selectedButton;
-@property (nonatomic,strong) NSMutableArray<Instrument *> *instrumentsArray;
 @end
 

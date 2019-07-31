@@ -6,9 +6,9 @@
 //  Copyright © 2019 Ilya. All rights reserved.
 //
 
-#import "Instrument.h"
+#import "LineInstrument.h"
 
-@interface StarInstrument : Instrument
+@interface StarInstrument : LineInstrument
 
 @end
 

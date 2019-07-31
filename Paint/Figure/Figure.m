@@ -12,7 +12,6 @@
 @synthesize rect;
 @synthesize path;
 
-
 - (id)init
 {
     if (self = [super init]) {
@@ -34,19 +33,18 @@
 - (void)draw
 {
     if(self.path){
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGPathRef thickPath = CGPathCreateCopyByStrokingPath(path, NULL, 10, kCGLineCapButt, kCGLineJoinBevel, 0);
-    CGContextAddPath(context, thickPath);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
-    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
-    CGContextSetLineWidth(context, 3);
-    CGContextDrawPath(context, kCGPathFillStroke);
-
-    CGPathRelease(thickPath);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGPathRef thickPath = CGPathCreateCopyByStrokingPath(path, NULL, 6, kCGLineCapRound, kCGLineJoinRound, 0);
+        
+        CGContextAddPath(context, thickPath);
+        
+        CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+        CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+        CGContextSetLineWidth(context, 3);
+        CGContextDrawPath(context, kCGPathFillStroke);
+        
+        CGPathRelease(thickPath);
     }
 }
-
-
 
 @end

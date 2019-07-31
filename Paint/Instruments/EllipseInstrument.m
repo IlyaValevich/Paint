@@ -12,49 +12,36 @@
 @implementation EllipseInstrument
 
 @synthesize lineArray;
-@synthesize myBeginPoint;
-@synthesize tempImageView;
+@synthesize rect;
 
-- (void)draw
+- (Figure *)makeFigure
 {
-    tempImageView.clearsContextBeforeDrawing = NO;
-    UIGraphicsBeginImageContext(tempImageView.frame.size);
-    [tempImageView.image drawAtPoint:CGPointZero];
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [[UIColor greenColor] setStroke];
-    
-    CGContextBeginPath(context);
-    CGContextSetLineWidth(context, 8.0f);
-    
-    CGContextSetLineJoin(context, kCGLineJoinRound);
-    CGContextSetLineCap(context, kCGLineCapRound);
+    CGMutablePathRef path = CGPathCreateMutable();
     
     if ([lineArray count] > 0) {
         for (int i = 0; i < [lineArray count]; i++) {
             NSArray * array = [NSArray arrayWithArray:[lineArray objectAtIndex:i]];
             if ([array count] > 0) {
-                CGContextBeginPath(context);
                 CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
-                
                 CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
-
-                CGRect rect = CGRectMake (myStartPoint.x,
-                                          myStartPoint.y,
-                                          myEndPoint.x - myStartPoint.x,
-                                          myEndPoint.y - myStartPoint.y);
-                CGContextAddEllipseInRect(context, rect);
-                CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
-                CGContextSetLineWidth(context, 8.0);
-                CGContextStrokePath(context);
+                
+                CGFloat h = myEndPoint.x - myStartPoint.x;
+                CGFloat w = myEndPoint.y - myStartPoint.y;
+                
+                [self calcPoints:&myStartPoint endPoint:&myEndPoint];
+                
+                rect = CGRectMake(myStartPoint.x,
+                                  myStartPoint.y,
+                                  fabs(h),
+                                  fabs(w));
+                
+                CGPathAddEllipseInRect(path, NULL, rect);
             }
         }
     }
     
-    tempImageView.image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [tempImageView setNeedsDisplay];
+    [self calcRect:&rect];
+    return [[Figure alloc] init:rect  path:path];
 }
-
-
 
 @end

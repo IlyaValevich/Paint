@@ -12,55 +12,28 @@
 @implementation PointInstrument
 
 @synthesize lineArray;
-@synthesize myBeginPoint;
-@synthesize tempImageView;
-
+@synthesize mainView;
 
 - (Figure*)makeFigure
 {
-
-   
- 
-    CGContextRef context = UIGraphicsGetCurrentContext();
     CGMutablePathRef path = CGPathCreateMutable();
-    [[UIColor greenColor] setStroke];
-    
-    CGContextSaveGState(context);
-    CGContextBeginPath(context);
-    CGContextSetLineWidth(context, 8.0f);
-    
-    CGContextSetLineJoin(context, kCGLineJoinRound);
-    CGContextSetLineCap(context, kCGLineCapRound);
     
     if ([lineArray count] > 0) {
         for (int i = 0; i < [lineArray count]; i++) {
             NSArray * array = [NSArray arrayWithArray:[lineArray objectAtIndex:i]];
             if ([array count] > 0) {
-                CGContextBeginPath(context);
-                myBeginPoint = CGPointFromString([array objectAtIndex:0]);
-                CGPathMoveToPoint(path, NULL, self.myBeginPoint.x, self.myBeginPoint.y);
+                CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
+                CGPathMoveToPoint(path, NULL, myStartPoint.x, myStartPoint.y);
                 
                 for (int j = 0; j < [array count] - 1; j++) {
                     CGPoint myEndPoint = CGPointFromString([array objectAtIndex:j+1]);
                     CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
                 }
-                
-                CGContextSetStrokeColorWithColor(context,[[UIColor blackColor] CGColor]);
-                CGContextSetLineWidth(context, 8.0);
-                CGContextStrokePath(context);
             }
         }
     }
-    
-    CGContextRestoreGState(context);
-    
 
-    CGContextAddPath(context, path);
-    CGContextSetStrokeColorWithColor(context,[UIColor blackColor].CGColor);
-    CGContextStrokePath(context);
-    //CGPathRelease(path);
-    
-    return [[Figure alloc] init:tempImageView.bounds  path:path];
+    return [[Figure alloc] init:mainView.bounds  path:path];
 }
 
 
