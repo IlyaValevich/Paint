@@ -14,11 +14,13 @@
 
 @synthesize lineArray;
 @synthesize mainView;
+@synthesize pointArray;
 
 - (id)init
 {
     if (self = [super init]) {
-        lineArray=[[NSMutableArray alloc]init];
+        lineArray = [NSMutableArray new];
+        pointArray = [NSMutableArray new];
     }
     return self;
 }
@@ -27,7 +29,8 @@
 - (id)init:(UIView *)mainView
 {
     if (self = [super init]) {
-        self.lineArray=[[NSMutableArray alloc]init];
+        self.lineArray = [NSMutableArray new];
+        self.pointArray = [NSMutableArray new];
         self.mainView = mainView;
     }
     return self;
@@ -35,7 +38,7 @@
 
 - (Figure*)makeFigure
 {
-    return [[Figure alloc] init];
+    return [Figure new];
 }
 
 @end

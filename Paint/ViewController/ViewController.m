@@ -14,7 +14,6 @@
 #import "SquareInstrument.h"
 #import "StarInstrument.h"
 
-
 @implementation ViewController
 
 - (void)viewDidLoad
@@ -22,7 +21,7 @@
     [super viewDidLoad];
     
     self.customView = [[CustomView alloc] initWithFrame:CGRectZero];
-    self.stackView = [[UIStackView alloc] init];
+    self.stackView = [UIStackView new];
     [self.view addSubview:self.customView];
     
     self.pointButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -125,7 +124,7 @@
 -(void)clearButtonAction
 {
     [self.customView clear];
-    self.customView.instrument.lineArray=[[NSMutableArray alloc] init];
+    self.customView.instrument.lineArray = [NSMutableArray new];
 }
 
 -(void)selectButton:(UIButton*)newButton

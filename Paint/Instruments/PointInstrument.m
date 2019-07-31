@@ -12,6 +12,7 @@
 @implementation PointInstrument
 
 @synthesize lineArray;
+@synthesize pointArray;
 @synthesize mainView;
 
 - (Figure*)makeFigure
@@ -32,6 +33,21 @@
             }
         }
     }
+    
+    if ([pointArray count] > 0) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextBeginPath(context);
+        //path = CGPathCreateMutable();
+        
+        CGPoint myStartPoint = CGPointFromString([pointArray objectAtIndex:0]);
+        CGPathMoveToPoint(path, NULL, myStartPoint.x, myStartPoint.y);
+                
+        for (int j = 0; j < [pointArray count] - 1; j++) {
+            CGPoint myEndPoint = CGPointFromString([pointArray objectAtIndex:j+1]);
+            CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
+            }
+        }
+    
 
     return [[Figure alloc] init:mainView.bounds  path:path];
 }

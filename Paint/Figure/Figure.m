@@ -43,6 +43,10 @@
         CGContextSetLineWidth(context, 3);
         CGContextDrawPath(context, kCGPathFillStroke);
         
+        CGContextSetAlpha(context, 0.5);
+        CGContextAddRect(context, rect);
+        CGContextDrawPath(context, kCGPathFillStroke);
+        
         CGPathRelease(thickPath);
     }
 }

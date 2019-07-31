@@ -13,6 +13,7 @@
 /*Instrument writes to a mainView from CustomView.Using line array to painting algorint.*/
 
 @property (nonatomic,readwrite) NSMutableArray *lineArray;
+@property (nonatomic,readwrite) NSMutableArray *pointArray;
 @property (nonatomic,readwrite) UIView* mainView;
 
 - (Figure *)makeFigure;

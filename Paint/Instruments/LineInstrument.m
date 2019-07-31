@@ -13,6 +13,7 @@
 @implementation LineInstrument
 
 @synthesize lineArray;
+@synthesize pointArray;
 @synthesize rect;
 
 - (Figure*)makeFigure
@@ -42,6 +43,28 @@
             }
         }
     }
+    
+    if ([pointArray count] > 0) {
+    
+            CGPoint myStartPoint = CGPointFromString([pointArray objectAtIndex:0]);
+            CGPoint myEndPoint = CGPointFromString([pointArray objectAtIndex:[pointArray count] - 1]);
+                
+            CGPathMoveToPoint(path, NULL, myStartPoint.x, myStartPoint.y);
+            CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
+                
+            CGFloat h = myEndPoint.x - myStartPoint.x;
+            CGFloat w = myEndPoint.y - myStartPoint.y;
+                
+            [self calcPoints:&myStartPoint endPoint:&myEndPoint];
+                
+            rect = CGRectMake(myStartPoint.x,
+                              myStartPoint.y,
+                              fabs(h),
+                              fabs(w));
+                
+            }
+    
+    
    
     [self calcRect:&rect];
     
