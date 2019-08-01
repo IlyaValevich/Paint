@@ -20,7 +20,7 @@
     return self;
 }
 
-- (id)init:(CGRect) rect path:(CGMutablePathRef) path{
+- (id)init:(CGRect) rect path:(CGMutablePathRef) path {
     if (self = [super init]) {
         self.rect = rect;
         self.path = path;
@@ -28,7 +28,7 @@
     return self;
 }
 
-- (void)draw{
+- (void)draw {
     if(self.path){
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGPathRef thickPath = CGPathCreateCopyByStrokingPath(path, NULL, 8, kCGLineCapRound, kCGLineJoinRound, 0);

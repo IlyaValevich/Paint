@@ -17,7 +17,7 @@
 @synthesize path;
 
 
-- (void)drawAlgoritm:(NSMutableArray*) array{
+- (void)drawAlgoritm:(NSMutableArray*) array {
     CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
     CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
     
@@ -28,14 +28,14 @@
     w = h;
     CGFloat rectOffsetX = 10;
     CGFloat rectOffsetY = rectOffsetX;
-    if(myEndPoint.x < myStartPoint.x){
-        if(h > 0){
+    if(myEndPoint.x < myStartPoint.x) {
+        if(h > 0) {
             h = -h;
             rectOffsetX  = - rectOffsetX ;
         }
     }
-    if(myEndPoint.y < myStartPoint.y){
-        if(w > 0){
+    if(myEndPoint.y < myStartPoint.y) {
+        if(w > 0) {
             w = -w;
             rectOffsetY = - rectOffsetY;
         }
@@ -48,13 +48,13 @@
     
     CGPathAddRect(path, NULL, rect);
     
-    if(myEndPoint.x < myStartPoint.x && myEndPoint.y < myStartPoint.y){
+    if(myEndPoint.x < myStartPoint.x && myEndPoint.y < myStartPoint.y) {
         rect = CGRectMake(myStartPoint.x + rectOffsetX,
                           myStartPoint.y + rectOffsetY,
                           h - 2 * rectOffsetX,
                           w - 2 * rectOffsetY);
-    }else{
-        
+    }
+    else {
         rect = CGRectMake(myStartPoint.x - rectOffsetX,
                           myStartPoint.y - rectOffsetY,
                           h + 2 * rectOffsetX,

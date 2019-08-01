@@ -14,13 +14,13 @@
 
 @implementation DrawManager
 
-- (Figure*)makeFigure:(Instrument*) instrument{
+- (Figure*)makeFigure:(Instrument*) instrument {
     instrument.path = CGPathCreateMutable();
     [instrument drawFigure];
     return [[Figure alloc] init: instrument.rect path: instrument.path];
 }
 
-- (void)drawFigure:(Instrument*) instrument{
+- (void)drawFigure:(Instrument*) instrument {
     if ([instrument.pointArray count] > 0) {
         [instrument drawAlgoritm:instrument.pointArray];
     }

@@ -19,7 +19,7 @@
 @synthesize rect;
 @synthesize path;
 
-- (void)drawAlgoritm:(NSMutableArray*) array{
+- (void)drawAlgoritm:(NSMutableArray*) array {
     CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
     CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
     
@@ -42,8 +42,7 @@
     
     CGPathMoveToPoint(path, NULL, xCenter, r*flip+yCenter);
     bool temp = false;
-    for (NSUInteger k=1; k<10; k++)
-    {
+    for (NSUInteger k=1; k<10; k++) {
         float x = r * sin(k * theta);
         float y = r * cos(k * theta);
         if(temp){

@@ -23,7 +23,7 @@
 @synthesize instrument;
 @synthesize figuresArray;
 
-- (id)init{
+- (id)init {
     if (self = [super init]) {
         instrument = [[PointInstrument alloc] init: self];
         figuresArray = [NSMutableArray array];
@@ -31,7 +31,7 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame{
+- (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
         figuresArray = [NSMutableArray array];
@@ -39,19 +39,19 @@
     return self;
 }
 
-- (void) drawRect:(CGRect)rect{
+- (void) drawRect:(CGRect)rect {
     [previewFigure draw];
 
     for (Figure *figure in figuresArray) {
         [figure draw];
-        }
+    }
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     NSString *sPoint = NSStringFromCGPoint([touch locationInView:self]);
     [self.instrument.pointArray addObject:sPoint];
@@ -65,7 +65,7 @@
     
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
     NSString *sPoint = NSStringFromCGPoint([touch locationInView:self]);
@@ -85,13 +85,13 @@
     
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.instrument.pointArray removeAllObjects];
     previewFigure = nil;
     [self setNeedsDisplay];
 }
 
-- (void)clear{
+- (void)clear {
     self.backgroundColor = [UIColor clearColor];
     [figuresArray removeLastObject];
     [instrument.pointArray removeAllObjects];

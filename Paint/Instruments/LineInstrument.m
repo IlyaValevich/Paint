@@ -17,7 +17,7 @@
 @synthesize path;
 
 
-- (void)drawAlgoritm:(NSMutableArray*) array{
+- (void)drawAlgoritm:(NSMutableArray*) array {
     CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
     CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
     
@@ -35,8 +35,8 @@
                       fabs(w) + 12);
 }
 
-- (void)calcPoints:(CGPoint*) startPoint endPoint:(CGPoint*) endPoint{
-    if(startPoint->x > endPoint->x){
+- (void)calcPoints:(CGPoint*) startPoint endPoint:(CGPoint*) endPoint {
+    if(startPoint->x > endPoint->x) {
         CGFloat temp = startPoint->x;
         startPoint->x = endPoint->x;
         endPoint->x = temp;
