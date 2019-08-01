@@ -27,25 +27,6 @@
     return [[Figure alloc] init:mainView.bounds path:path];
 }
 
--(void)drawFigure
-{
-    if ([lineArray count] > 0) {
-        for (int i = 0; i < [lineArray count]; i++) {
-            NSMutableArray * array = [NSMutableArray arrayWithArray:[lineArray objectAtIndex:i]];
-            if ([array count] > 0) {
-                [self drawAlgoritm:array];
-            }
-        }
-    }
-}
-
--(void)drawPreview
-{
-    if ([pointArray count] > 0) {
-        [self drawAlgoritm:pointArray];
-    }
-}
-
 -(void)drawAlgoritm:(NSMutableArray*) array
 {
     CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);

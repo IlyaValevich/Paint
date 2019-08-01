@@ -11,5 +11,6 @@
 @interface Instrument : NSObject <InstrumentProtocol>
 - (void)drawFigure;
 - (void)drawPreview;
+- (void)drawAlgoritm:(NSMutableArray*) array;
 - (id)init:(UIView*) mainView;
 @end

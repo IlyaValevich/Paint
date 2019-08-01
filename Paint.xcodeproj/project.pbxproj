@@ -14,6 +14,7 @@
 		0964622C22F024C0002C7569 /* StarInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0964622B22F024C0002C7569 /* StarInstrument.m */; };
 		0964622E22F034B0002C7569 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0964622D22F034B0002C7569 /* Instrument.m */; };
 		0964623522F06A95002C7569 /* Figure.m in Sources */ = {isa = PBXBuildFile; fileRef = 0964623422F06A95002C7569 /* Figure.m */; };
+		096FABDD22F3072D00F2A3EC /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 096FABDC22F3072D00F2A3EC /* DrawManager.m */; };
 		09A37E4322E882660075C43B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A37E4222E882660075C43B /* AppDelegate.m */; };
 		09A37E4622E882660075C43B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A37E4522E882660075C43B /* ViewController.m */; };
 		09A37E4922E882660075C43B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A37E4722E882660075C43B /* Main.storyboard */; };
@@ -34,6 +35,8 @@
 		0964622F22F0353C002C7569 /* Instrument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
 		0964623322F069EF002C7569 /* Figure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Figure.h; sourceTree = "<group>"; };
 		0964623422F06A95002C7569 /* Figure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Figure.m; sourceTree = "<group>"; };
+		096FABDB22F306A800F2A3EC /* DrawManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawManager.h; sourceTree = "<group>"; };
+		096FABDC22F3072D00F2A3EC /* DrawManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawManager.m; sourceTree = "<group>"; };
 		09A37E3E22E882660075C43B /* Paint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A37E4122E882660075C43B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		09A37E4222E882660075C43B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -152,6 +155,8 @@
 				0964622922F024B3002C7569 /* SquareInstrument.m */,
 				09A37E6722E9BC810075C43B /* StarInstrument.h */,
 				0964622B22F024C0002C7569 /* StarInstrument.m */,
+				096FABDB22F306A800F2A3EC /* DrawManager.h */,
+				096FABDC22F3072D00F2A3EC /* DrawManager.m */,
 			);
 			path = Instruments;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				096FABDD22F3072D00F2A3EC /* DrawManager.m in Sources */,
 				0964622C22F024C0002C7569 /* StarInstrument.m in Sources */,
 				09A37E5C22E887250075C43B /* CustomView.m in Sources */,
 				09A37E4C22E882660075C43B /* Paint.xcdatamodeld in Sources */,

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Instrument.h"
 #import "Figure.h"
+#import "DrawManager.h"
 
 @implementation Instrument
 
@@ -45,17 +46,17 @@
 
 -(void)drawFigure
 {
-   
+    [[DrawManager new]drawFigure:self];
 }
 
 -(void)drawPreview
 {
-   
+    [[DrawManager new]drawPreview:self];
 }
 
 -(void)drawAlgoritm:(NSMutableArray*) array
 {
-    NSLog(@"!@!!!@!@!@!@");
+    
 }
 
 @end
