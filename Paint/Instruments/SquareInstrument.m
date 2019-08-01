@@ -17,8 +17,7 @@
 @synthesize path;
 
 
--(void)drawAlgoritm:(NSMutableArray*) array
-{
+- (void)drawAlgoritm:(NSMutableArray*) array{
     CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
     CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
     
@@ -55,13 +54,13 @@
                           h - 2 * rectOffsetX,
                           w - 2 * rectOffsetY);
     }else{
-    
+        
         rect = CGRectMake(myStartPoint.x - rectOffsetX,
-                         myStartPoint.y - rectOffsetY,
+                          myStartPoint.y - rectOffsetY,
                           h + 2 * rectOffsetX,
                           w + 2 * rectOffsetY);
     }
+    
 }
-
 
 @end

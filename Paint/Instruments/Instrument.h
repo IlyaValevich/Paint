@@ -13,5 +13,4 @@
 - (void)drawFigure;
 - (void)drawAlgoritm:(NSMutableArray*) array;
 - (id)init:(UIView*) mainView;
-- (void)calcRect:(CGRect*) rect; //to correctly display the line width.
 @end

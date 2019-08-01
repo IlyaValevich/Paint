@@ -10,6 +10,6 @@
 
 @interface LineInstrument  : Instrument
 
--(void)calcPoints:(CGPoint*) startPoint endPoint:(CGPoint*) endPoint;//to correctly calculate start and end point.
+- (void)calcPoints:(CGPoint*) startPoint endPoint:(CGPoint*) endPoint;//to correctly calculate start and end point.
 @end
 

@@ -13,7 +13,6 @@
 
 @interface CustomView(){
     id <InstrumentProtocol> instrument;
-    NSMutableArray *pointArray;
     NSMutableArray<Figure *> *figuresArray;
     Figure *previewFigure;
 }
@@ -22,31 +21,25 @@
 @implementation CustomView
 
 @synthesize instrument;
-@synthesize pointArray;
 @synthesize figuresArray;
 
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         instrument = [[PointInstrument alloc] init: self];
-        pointArray = [NSMutableArray new];
         figuresArray = [NSMutableArray array];
     }
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
-        pointArray = [NSMutableArray new];
         figuresArray = [NSMutableArray array];
     }
     return self;
 }
 
--(void) drawRect:(CGRect)rect
-{
+- (void) drawRect:(CGRect)rect{
     [previewFigure draw];
 
     for (Figure *figure in figuresArray) {
@@ -54,33 +47,33 @@
         }
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *touch = [touches anyObject];
     NSString *sPoint = NSStringFromCGPoint([touch locationInView:self]);
     [self.instrument.pointArray addObject:sPoint];
     
     //redraw old rect
-    CGRect rect = previewFigure.rect;
-    [self setNeedsDisplayInRect:rect];
+    [self setNeedsDisplayInRect:previewFigure.rect];
     
     //draw new figure
     previewFigure = [self.instrument makeFigure];
-    rect = previewFigure.rect;
-    [self setNeedsDisplayInRect:rect];
+    [self setNeedsDisplayInRect:previewFigure.rect];;
     
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"end");
     
     UITouch *touch = [touches anyObject];
     NSString *sPoint = NSStringFromCGPoint([touch locationInView:self]);
     [self.instrument.pointArray addObject:sPoint];
+    
+    //redraw old rect
+    [self setNeedsDisplayInRect:previewFigure.rect];
     
     previewFigure = [self.instrument makeFigure];
     if(previewFigure){
@@ -93,17 +86,15 @@
     
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"cancel");
     [self.instrument.pointArray removeAllObjects];
     previewFigure = nil;
-     [self setNeedsDisplay];
+    [self setNeedsDisplay];
 }
 
--(void)clear
-{
+- (void)clear{
     self.backgroundColor = [UIColor clearColor];
-    [pointArray removeAllObjects];
     [figuresArray removeLastObject];
     [instrument.pointArray removeAllObjects];
     previewFigure = nil;

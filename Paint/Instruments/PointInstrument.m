@@ -16,8 +16,7 @@
 @synthesize path;
 @synthesize rect;
 
--(void)drawAlgoritm:(NSMutableArray*) array
-{
+- (void)drawAlgoritm:(NSMutableArray*) array{
     CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
     CGPathMoveToPoint(path, NULL, myStartPoint.x, myStartPoint.y);
     
@@ -25,12 +24,11 @@
         CGPoint myEndPoint = CGPointFromString([array objectAtIndex:j+1]);
         CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
     }
-    [self calcRect:&(rect)];
+    [self calcRect];
 }
 
-- (void)calcRect:(CGRect*) rect
-{
-    *rect = mainView.bounds;
+- (void)calcRect {
+    rect = mainView.bounds;
 }
 
 @end

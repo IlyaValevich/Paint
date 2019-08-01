@@ -15,8 +15,7 @@
 @synthesize rect;
 @synthesize path;
 
--(void)drawAlgoritm:(NSMutableArray*) array
-{
+- (void)drawAlgoritm:(NSMutableArray*) array{
     CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
     CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
     
@@ -31,7 +30,11 @@
                       fabs(w));
     
     CGPathAddEllipseInRect(path, NULL, rect);
-    [self calcRect:&(rect)];
+    
+    rect = CGRectMake(myStartPoint.x - 6,
+                      myStartPoint.y - 6,
+                      fabs(h) + 12,
+                      fabs(w) + 12);
 }
 
 @end

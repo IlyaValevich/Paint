@@ -18,16 +18,14 @@
 @synthesize path;
 @synthesize rect;
 
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         pointArray = [NSMutableArray new];
     }
     return self;
 }
 
-- (id)init:(UIView *)mainView
-{
+- (id)init:(UIView *)mainView{
     if (self = [super init]) {
         self.pointArray = [NSMutableArray new];
         self.mainView = mainView;
@@ -35,25 +33,17 @@
     return self;
 }
 
-- (Figure*)makeFigure
-{
+- (Figure*)makeFigure{
 
     return [[DrawManager new] makeFigure:self]; ;
 }
 
--(void)drawFigure
-{
+- (void)drawFigure{
     [[DrawManager new] drawFigure:self];
 }
 
 
--(void)drawAlgoritm:(NSMutableArray*) array
-{
-    
-}
-
-- (void)calcRect:(CGRect*) rect
-{
+- (void)drawAlgoritm:(NSMutableArray*) array{
     
 }
 

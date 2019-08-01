@@ -16,8 +16,7 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
+-(void)viewDidLoad{
     [super viewDidLoad];
     
     self.customView = [[CustomView alloc] initWithFrame:CGRectZero];
@@ -91,51 +90,43 @@
     [self setupContsraints];
 }
 
--(void)pointButtonAction:(UIButton* ) button
-{
+-(void)pointButtonAction:(UIButton* ) button{
     self.customView.instrument = [[PointInstrument alloc] init:self.customView];
     [self selectButton:button];
 }
 
--(void)lineButtonAction:(UIButton* ) button
-{
+-(void)lineButtonAction:(UIButton* ) button{
     self.customView.instrument = [[LineInstrument alloc] init:self.customView];
     [self selectButton:button];
 }
 
--(void)ellipseButtonAction:(UIButton* ) button
-{
+-(void)ellipseButtonAction:(UIButton* ) button{
     self.customView.instrument = [[EllipseInstrument alloc] init:self.customView];
     [self selectButton:button];
 }
 
--(void)squareButtonAction:(UIButton* ) button
-{
+-(void)squareButtonAction:(UIButton* ) button{
     self.customView.instrument = [[SquareInstrument alloc] init:self.customView];
     [self selectButton:button];
 }
 
--(void)starButtonAction:(UIButton* ) button
-{
+-(void)starButtonAction:(UIButton* ) button{
     self.customView.instrument = [[StarInstrument alloc] init:self.customView];
     [self selectButton:button];
 }
 
--(void)clearButtonAction
-{
+-(void)clearButtonAction{
     [self.customView clear];
     self.customView.instrument.pointArray = [NSMutableArray new];
 }
 
--(void)selectButton:(UIButton*)newButton
-{
+-(void)selectButton:(UIButton*)newButton{
     [self.selectedButton setSelected:NO];
     self.selectedButton = newButton;
     [self.selectedButton setSelected:YES];
 }
 
--(void) setupContsraints
-{
+-(void) setupContsraints{
     self.customView.translatesAutoresizingMaskIntoConstraints = false;
 
     [self.customView.topAnchor constraintEqualToAnchor:self.view.topAnchor
@@ -172,8 +163,10 @@
     
     [self.stackView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor
                                                 constant:-30].active = true;
-    [self.stackView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor ].active = YES;
-    [self.stackView.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor ].active = YES;
+    [self.stackView.leadingAnchor
+     constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor ].active = YES;
+    [self.stackView.trailingAnchor
+     constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor ].active = YES;
     
     
     [self.pointButton.heightAnchor constraintEqualToAnchor:self.pointButton.widthAnchor

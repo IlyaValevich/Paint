@@ -11,7 +11,6 @@
 #import "DrawManager.h"
 
 @interface StarInstrument()
-@property (nonatomic,readwrite) CGRect rect;
 @end
 
 @implementation StarInstrument
@@ -20,8 +19,7 @@
 @synthesize rect;
 @synthesize path;
 
--(void)drawAlgoritm:(NSMutableArray*) array
-{
+- (void)drawAlgoritm:(NSMutableArray*) array{
     CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
     CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
     
@@ -33,10 +31,10 @@
                    pow((myEndPoint.y - myStartPoint.y),2)) ;
     double r = w / 2.0;
     
-    rect = CGRectMake (xCenter - r,
-                       yCenter - r,
-                       2*r,
-                       2*r);
+    rect = CGRectMake (xCenter - r - 6,
+                       yCenter - r - 6,
+                       2*r + 12,
+                       2*r + 12);
     
     float flip = -1.0;
     
@@ -58,7 +56,6 @@
         CGPathAddLineToPoint(path, NULL, x+xCenter, y*flip+yCenter);
     }
     CGPathCloseSubpath(path);
-    [self calcRect:&(rect)];
 }
 
 @end
