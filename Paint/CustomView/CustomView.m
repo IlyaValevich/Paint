@@ -66,7 +66,6 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"end");
     
     UITouch *touch = [touches anyObject];
     NSString *sPoint = NSStringFromCGPoint([touch locationInView:self]);
@@ -87,7 +86,6 @@
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"cancel");
     [self.instrument.pointArray removeAllObjects];
     previewFigure = nil;
     [self setNeedsDisplay];
