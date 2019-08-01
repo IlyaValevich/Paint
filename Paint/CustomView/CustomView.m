@@ -52,7 +52,6 @@
     for (Figure *figure in figuresArray) {
         [figure draw];
         }
-    //[[figuresArray lastObject] draw];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -65,6 +64,7 @@
     UITouch *touch = [touches anyObject];
     NSString *sPoint = NSStringFromCGPoint([touch locationInView:self]);
     [self.instrument.pointArray addObject:sPoint];
+    
     //redraw old rect
     CGRect rect = previewFigure.rect;
     [self setNeedsDisplayInRect:rect];
@@ -76,26 +76,28 @@
     
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    NSArray *array = [NSArray arrayWithArray:self.instrument.pointArray];
-    [self.instrument.lineArray addObject:array];
-    self.instrument.pointArray = [NSMutableArray new];
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     
-    previewFigure = nil;
+    UITouch *touch = [touches anyObject];
+    NSString *sPoint = NSStringFromCGPoint([touch locationInView:self]);
+    [self.instrument.pointArray addObject:sPoint];
     
-    Figure *temp = [self.instrument makeFigure];
-    if(temp){
-        [figuresArray addObject:temp];
-        [self setNeedsDisplayInRect:temp.rect];
+    previewFigure = [self.instrument makeFigure];
+    if(previewFigure){
+        [figuresArray addObject:previewFigure];
+        [self setNeedsDisplayInRect:previewFigure.rect];
     }
-
+    
+    [self.instrument.pointArray removeAllObjects];
+    previewFigure = nil;
     
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
+    [self.instrument.pointArray removeAllObjects];
+    previewFigure = nil;
+     [self setNeedsDisplay];
 }
 
 -(void)clear
@@ -103,7 +105,7 @@
     self.backgroundColor = [UIColor clearColor];
     [pointArray removeAllObjects];
     [figuresArray removeLastObject];
-    [instrument.lineArray removeAllObjects];
+    [instrument.pointArray removeAllObjects];
     previewFigure = nil;
     [self setNeedsDisplay];
 }

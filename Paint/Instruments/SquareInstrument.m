@@ -12,20 +12,10 @@
 
 @implementation SquareInstrument
 
-@synthesize lineArray;
 @synthesize pointArray;
 @synthesize rect;
 @synthesize path;
 
-- (Figure *)makeFigure
-{
-    path = CGPathCreateMutable();
-    
-    [self drawFigure];
-    [self drawPreview];
-    [super calcRect:&rect];
-    return [[Figure alloc] init:CGRectInfinite  path:path];
-}
 
 -(void)drawAlgoritm:(NSMutableArray*) array
 {
@@ -37,13 +27,19 @@
     
     h = MAX(h, w);
     w = h;
+    CGFloat rectOffsetX = 10;
+    CGFloat rectOffsetY = rectOffsetX;
     if(myEndPoint.x < myStartPoint.x){
-        if(h > 0)
+        if(h > 0){
             h = -h;
+            rectOffsetX  = - rectOffsetX ;
+        }
     }
     if(myEndPoint.y < myStartPoint.y){
-        if(w > 0)
+        if(w > 0){
             w = -w;
+            rectOffsetY = - rectOffsetY;
+        }
     }
     
     rect = CGRectMake(myStartPoint.x,
@@ -52,6 +48,20 @@
                       w);
     
     CGPathAddRect(path, NULL, rect);
+    
+    if(myEndPoint.x < myStartPoint.x && myEndPoint.y < myStartPoint.y){
+        rect = CGRectMake(myStartPoint.x + rectOffsetX,
+                          myStartPoint.y + rectOffsetY,
+                          h - 2 * rectOffsetX,
+                          w - 2 * rectOffsetY);
+    }else{
+    
+        rect = CGRectMake(myStartPoint.x - rectOffsetX,
+                         myStartPoint.y - rectOffsetY,
+                          h + 2 * rectOffsetX,
+                          w + 2 * rectOffsetY);
+    }
 }
+
 
 @end

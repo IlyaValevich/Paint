@@ -124,7 +124,7 @@
 -(void)clearButtonAction
 {
     [self.customView clear];
-    self.customView.instrument.lineArray = [NSMutableArray new];
+    self.customView.instrument.pointArray = [NSMutableArray new];
 }
 
 -(void)selectButton:(UIButton*)newButton

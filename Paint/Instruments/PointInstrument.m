@@ -11,27 +11,10 @@
 
 @implementation PointInstrument
 
-@synthesize lineArray;
 @synthesize pointArray;
 @synthesize mainView;
 @synthesize path;
 @synthesize rect;
-
-- (Figure*)makeFigure
-{
-    path = CGPathCreateMutable();
-    
-    [self drawFigure];
-    [self drawPreview];
-    [self calcRect:&rect];
-    
-    return [[Figure alloc] init:rect path:path];
-}
-
-- (void)calcRect:(CGRect*) rect
-{
-    *rect = mainView.bounds;
-}
 
 -(void)drawAlgoritm:(NSMutableArray*) array
 {
@@ -42,6 +25,12 @@
         CGPoint myEndPoint = CGPointFromString([array objectAtIndex:j+1]);
         CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
     }
+    [self calcRect:&(rect)];
+}
+
+- (void)calcRect:(CGRect*) rect
+{
+    *rect = mainView.bounds;
 }
 
 @end

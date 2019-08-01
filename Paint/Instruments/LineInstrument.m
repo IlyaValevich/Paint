@@ -12,21 +12,10 @@
 
 @implementation LineInstrument
 
-@synthesize lineArray;
 @synthesize pointArray;
 @synthesize rect;
 @synthesize path;
 
-- (Figure*)makeFigure
-{
-    path = CGPathCreateMutable();
-
-    [self drawFigure];
-    [self drawPreview];
-    [self calcRect:&rect];
-    
-    return [[Figure alloc] init:rect path:path];
-}
 
 -(void)drawAlgoritm:(NSMutableArray*) array
 {
@@ -45,6 +34,7 @@
                       myStartPoint.y,
                       fabs(h),
                       fabs(w));
+    [self calcRect:&(rect)];
 }
 
 - (void)calcRect:(CGRect*) rect

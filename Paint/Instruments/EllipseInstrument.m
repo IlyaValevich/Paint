@@ -11,39 +11,9 @@
 
 @implementation EllipseInstrument
 
-@synthesize lineArray;
 @synthesize pointArray;
 @synthesize rect;
 @synthesize path;
-
-- (Figure *)makeFigure
-{
-    path = CGPathCreateMutable();
-    
-    [self drawFigure];
-    [self drawPreview];
-    [self calcRect:&rect];
-    return [[Figure alloc] init:rect  path:path];
-}
-
--(void)drawFigure
-{
-    if ([lineArray count] > 0) {
-        for (int i = 0; i < [lineArray count]; i++) {
-            NSMutableArray * array = [NSMutableArray arrayWithArray:[lineArray objectAtIndex:i]];
-            if ([array count] > 0) {
-                [self drawAlgoritm:array];
-            }
-        }
-    }
-}
-
--(void)drawPreview
-{
-    if ([pointArray count] > 0) {
-        [self drawAlgoritm:pointArray];
-    }
-}
 
 -(void)drawAlgoritm:(NSMutableArray*) array
 {
@@ -61,6 +31,7 @@
                       fabs(w));
     
     CGPathAddEllipseInRect(path, NULL, rect);
+    [self calcRect:&(rect)];
 }
 
 @end

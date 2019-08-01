@@ -13,6 +13,5 @@
 @property (nonatomic,readwrite) CGPathRef path;
 
 - (void)draw;
-- (void)drawPreview:(CGContextRef) context;
 - (id)init:(CGRect) rect path:(CGMutablePathRef) path;
 @end

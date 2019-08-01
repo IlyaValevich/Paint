@@ -10,6 +10,5 @@
 @interface DrawManager : NSObject
 
 - (void)drawFigure:(Instrument*) instrument;
-- (void)drawPreview:(Instrument*) instrument;
 - (Figure*)makeFigure:(Instrument*) instrument;
 @end

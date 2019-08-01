@@ -16,21 +16,9 @@
 
 @implementation StarInstrument
 
-@synthesize lineArray;
 @synthesize pointArray;
 @synthesize rect;
 @synthesize path;
-
-- (Figure*)makeFigure
-{
-    path = CGPathCreateMutable();
-    [self drawFigure];
-    [self drawPreview];
-    [self calcRect:&rect];
-    
-    return [[Figure alloc] init:rect  path:path];
-}
-
 
 -(void)drawAlgoritm:(NSMutableArray*) array
 {
@@ -70,6 +58,7 @@
         CGPathAddLineToPoint(path, NULL, x+xCenter, y*flip+yCenter);
     }
     CGPathCloseSubpath(path);
+    [self calcRect:&(rect)];
 }
 
 @end

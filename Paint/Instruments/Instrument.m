@@ -13,7 +13,6 @@
 
 @implementation Instrument
 
-@synthesize lineArray;
 @synthesize mainView;
 @synthesize pointArray;
 @synthesize path;
@@ -22,7 +21,6 @@
 - (id)init
 {
     if (self = [super init]) {
-        lineArray = [NSMutableArray new];
         pointArray = [NSMutableArray new];
     }
     return self;
@@ -31,7 +29,6 @@
 - (id)init:(UIView *)mainView
 {
     if (self = [super init]) {
-        self.lineArray = [NSMutableArray new];
         self.pointArray = [NSMutableArray new];
         self.mainView = mainView;
     }
@@ -40,7 +37,8 @@
 
 - (Figure*)makeFigure
 {
-    return [[DrawManager new] makeFigure:self];
+
+    return [[DrawManager new] makeFigure:self]; ;
 }
 
 -(void)drawFigure
@@ -48,10 +46,6 @@
     [[DrawManager new] drawFigure:self];
 }
 
--(void)drawPreview
-{
-    [[DrawManager new] drawPreview:self];
-}
 
 -(void)drawAlgoritm:(NSMutableArray*) array
 {
