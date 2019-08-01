@@ -34,18 +34,18 @@
 {
     if(self.path){
         CGContextRef context = UIGraphicsGetCurrentContext();
-        CGPathRef thickPath = CGPathCreateCopyByStrokingPath(path, NULL, 6, kCGLineCapRound, kCGLineJoinRound, 0);
+        CGPathRef thickPath = CGPathCreateCopyByStrokingPath(path, NULL, 8, kCGLineCapRound, kCGLineJoinRound, 0);
         
         CGContextAddPath(context, thickPath);
         
-        CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+        CGContextSetStrokeColorWithColor(context, [UIColor clearColor].CGColor);
         CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
-        CGContextSetLineWidth(context, 3);
+        CGContextSetLineWidth(context, 8);
         CGContextDrawPath(context, kCGPathFillStroke);
         
-        CGContextSetAlpha(context, 0.5);
-        CGContextAddRect(context, rect);
-        CGContextDrawPath(context, kCGPathFillStroke);
+        //CGContextSetAlpha(context, 0.5);
+        //CGContextAddRect(context, rect);
+        //CGContextDrawPath(context, kCGPathFillStroke);
         
         CGPathRelease(thickPath);
     }

@@ -15,6 +15,8 @@
 @synthesize lineArray;
 @synthesize mainView;
 @synthesize pointArray;
+@synthesize path;
+@synthesize rect;
 
 - (id)init
 {
@@ -39,6 +41,21 @@
 - (Figure*)makeFigure
 {
     return [Figure new];
+}
+
+-(void)drawFigure
+{
+   
+}
+
+-(void)drawPreview
+{
+   
+}
+
+-(void)drawAlgoritm:(NSMutableArray*) array
+{
+    NSLog(@"!@!!!@!@!@!@");
 }
 
 @end

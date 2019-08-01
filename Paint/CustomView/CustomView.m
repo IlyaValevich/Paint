@@ -48,11 +48,11 @@
 -(void) drawRect:(CGRect)rect
 {
     [previewFigure draw];
-    
+
     for (Figure *figure in figuresArray) {
         [figure draw];
-    }
-
+        }
+    //[[figuresArray lastObject] draw];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -65,21 +65,15 @@
     UITouch *touch = [touches anyObject];
     NSString *sPoint = NSStringFromCGPoint([touch locationInView:self]);
     [self.instrument.pointArray addObject:sPoint];
-    
-    previewFigure = [self.instrument makeFigure];
+    //redraw old rect
     CGRect rect = previewFigure.rect;
-    rect.origin.x -= [touch locationInView:self].x + 50;
-    rect.origin.y -= [touch locationInView:self].y + 50;
-    rect.size.height += 2*([touch locationInView:self].x + 50);
-    rect.size.width += 2*([touch locationInView:self].y+ 50);
-    
     [self setNeedsDisplayInRect:rect];
-   
     
+    //draw new figure
+    previewFigure = [self.instrument makeFigure];
+    rect = previewFigure.rect;
+    [self setNeedsDisplayInRect:rect];
     
-  
-  
-
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -87,6 +81,8 @@
     NSArray *array = [NSArray arrayWithArray:self.instrument.pointArray];
     [self.instrument.lineArray addObject:array];
     self.instrument.pointArray = [NSMutableArray new];
+    
+    previewFigure = nil;
     
     Figure *temp = [self.instrument makeFigure];
     if(temp){
@@ -108,6 +104,7 @@
     [pointArray removeAllObjects];
     [figuresArray removeLastObject];
     [instrument.lineArray removeAllObjects];
+    previewFigure = nil;
     [self setNeedsDisplay];
 }
 @end

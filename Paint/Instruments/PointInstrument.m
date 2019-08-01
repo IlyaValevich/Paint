@@ -14,44 +14,47 @@
 @synthesize lineArray;
 @synthesize pointArray;
 @synthesize mainView;
+@synthesize path;
+@synthesize rect;
 
 - (Figure*)makeFigure
 {
-    CGMutablePathRef path = CGPathCreateMutable();
+    path = CGPathCreateMutable();
     
+    [self drawFigure];
+    [self drawPreview];
+    
+    return [[Figure alloc] init:mainView.bounds path:path];
+}
+
+-(void)drawFigure
+{
     if ([lineArray count] > 0) {
         for (int i = 0; i < [lineArray count]; i++) {
-            NSArray * array = [NSArray arrayWithArray:[lineArray objectAtIndex:i]];
+            NSMutableArray * array = [NSMutableArray arrayWithArray:[lineArray objectAtIndex:i]];
             if ([array count] > 0) {
-                CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
-                CGPathMoveToPoint(path, NULL, myStartPoint.x, myStartPoint.y);
-                
-                for (int j = 0; j < [array count] - 1; j++) {
-                    CGPoint myEndPoint = CGPointFromString([array objectAtIndex:j+1]);
-                    CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
-                }
+                [self drawAlgoritm:array];
             }
         }
     }
-    
-    if ([pointArray count] > 0) {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextBeginPath(context);
-        //path = CGPathCreateMutable();
-        
-        CGPoint myStartPoint = CGPointFromString([pointArray objectAtIndex:0]);
-        CGPathMoveToPoint(path, NULL, myStartPoint.x, myStartPoint.y);
-                
-        for (int j = 0; j < [pointArray count] - 1; j++) {
-            CGPoint myEndPoint = CGPointFromString([pointArray objectAtIndex:j+1]);
-            CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
-            }
-        }
-    
-
-    return [[Figure alloc] init:mainView.bounds  path:path];
 }
 
+-(void)drawPreview
+{
+    if ([pointArray count] > 0) {
+        [self drawAlgoritm:pointArray];
+    }
+}
 
+-(void)drawAlgoritm:(NSMutableArray*) array
+{
+    CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
+    CGPathMoveToPoint(path, NULL, myStartPoint.x, myStartPoint.y);
+    
+    for (int j = 0; j < [array count] - 1; j++) {
+        CGPoint myEndPoint = CGPointFromString([array objectAtIndex:j+1]);
+        CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
+    }
+}
 
 @end

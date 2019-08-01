@@ -15,6 +15,8 @@
 @property (nonatomic,readwrite) NSMutableArray *lineArray;
 @property (nonatomic,readwrite) NSMutableArray *pointArray;
 @property (nonatomic,readwrite) UIView* mainView;
+@property (nonatomic,readwrite) CGMutablePathRef path;
+@property (nonatomic,readwrite) CGRect rect;
 
 - (Figure *)makeFigure;
 - (id)init:(UIView*) mainView;

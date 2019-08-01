@@ -13,36 +13,64 @@
 @implementation SquareInstrument
 
 @synthesize lineArray;
+@synthesize pointArray;
 @synthesize rect;
+@synthesize path;
 
 - (Figure *)makeFigure
 {
-    CGMutablePathRef path = CGPathCreateMutable();
+    path = CGPathCreateMutable();
+    
+    [self drawFigure];
+    [self drawPreview];
+    [super calcRect:&rect];
+    return [[Figure alloc] init:CGRectInfinite  path:path];
+}
 
+-(void)drawFigure
+{
     if ([lineArray count] > 0) {
         for (int i = 0; i < [lineArray count]; i++) {
-            NSArray * array = [NSArray arrayWithArray:[lineArray objectAtIndex:i]];
+            NSMutableArray * array = [NSMutableArray arrayWithArray:[lineArray objectAtIndex:i]];
             if ([array count] > 0) {
-                CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
-                
-                CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
-                
-                CGFloat xCenter = (myStartPoint.x + (myEndPoint.x - myStartPoint.x)/2 );
-                CGFloat yCenter = (myStartPoint.y + (myEndPoint.y - myStartPoint.y)/2 );
-                
-                float w = sqrt(
-                               pow((myEndPoint.x - myStartPoint.x),2)+
-                               pow((myEndPoint.y - myStartPoint.y),2)) ;
-                
-                rect = CGRectMake(xCenter-w/2 , yCenter-w/2 , w, w);
-                
-                CGPathAddRect(path, NULL, rect);
+                [self drawAlgoritm:array];
             }
         }
     }
+}
+
+-(void)drawPreview
+{
+    if ([pointArray count] > 0) {
+        [self drawAlgoritm:pointArray];
+    }
+}
+
+-(void)drawAlgoritm:(NSMutableArray*) array
+{
+    CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
+    CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
     
-    [super calcRect:&rect];
-    return [[Figure alloc] init:rect  path:path];
+    CGFloat h = myEndPoint.x - myStartPoint.x;
+    CGFloat w = myEndPoint.y - myStartPoint.y;
+    
+    h = MAX(h, w);
+    w = h;
+    if(myEndPoint.x < myStartPoint.x){
+        if(h > 0)
+            h = -h;
+    }
+    if(myEndPoint.y < myStartPoint.y){
+        if(w > 0)
+            w = -w;
+    }
+    
+    rect = CGRectMake(myStartPoint.x,
+                      myStartPoint.y,
+                      h,
+                      w);
+    
+    CGPathAddRect(path, NULL, rect);
 }
 
 @end
