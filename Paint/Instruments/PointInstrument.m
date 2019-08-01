@@ -23,8 +23,14 @@
     
     [self drawFigure];
     [self drawPreview];
+    [self calcRect:&rect];
     
-    return [[Figure alloc] init:mainView.bounds path:path];
+    return [[Figure alloc] init:rect path:path];
+}
+
+- (void)calcRect:(CGRect*) rect
+{
+    *rect = mainView.bounds;
 }
 
 -(void)drawAlgoritm:(NSMutableArray*) array

@@ -28,7 +28,6 @@
     return self;
 }
 
-
 - (id)init:(UIView *)mainView
 {
     if (self = [super init]) {
@@ -41,20 +40,25 @@
 
 - (Figure*)makeFigure
 {
-    return [Figure new];
+    return [[DrawManager new] makeFigure:self];
 }
 
 -(void)drawFigure
 {
-    [[DrawManager new]drawFigure:self];
+    [[DrawManager new] drawFigure:self];
 }
 
 -(void)drawPreview
 {
-    [[DrawManager new]drawPreview:self];
+    [[DrawManager new] drawPreview:self];
 }
 
 -(void)drawAlgoritm:(NSMutableArray*) array
+{
+    
+}
+
+- (void)calcRect:(CGRect*) rect
 {
     
 }

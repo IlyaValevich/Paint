@@ -8,7 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "DrawManager.h"
+#import "Figure.h"
+#import <UIKit/UIKit.h>
+
 @implementation DrawManager
+
+- (Figure*)makeFigure:(Instrument*) instrument{
+    instrument.path = CGPathCreateMutable();
+    
+    [instrument drawFigure];
+    [instrument drawPreview];
+    CGRect rect = instrument.rect;
+    [instrument calcRect: &rect];
+    
+    return [[Figure alloc] init: instrument.rect path: instrument.path];
+}
 
 -(void)drawFigure:(Instrument*) instrument
 {
