@@ -48,19 +48,6 @@
     
     CGPathAddRect(path, NULL, rect);
     
-    if(myEndPoint.x < myStartPoint.x && myEndPoint.y < myStartPoint.y) {
-        rect = CGRectMake(myStartPoint.x + rectOffsetX,
-                          myStartPoint.y + rectOffsetY,
-                          h - 2 * rectOffsetX,
-                          w - 2 * rectOffsetY);
-    }
-    else {
-        rect = CGRectMake(myStartPoint.x - rectOffsetX,
-                          myStartPoint.y - rectOffsetY,
-                          h + 2 * rectOffsetX,
-                          w + 2 * rectOffsetY);
-    }
-    
 }
 
 @end

@@ -12,7 +12,7 @@
 @implementation PointInstrument
 
 @synthesize pointArray;
-@synthesize mainView;
+//@synthesize mainView;
 @synthesize path;
 @synthesize rect;
 
@@ -24,11 +24,6 @@
         CGPoint myEndPoint = CGPointFromString([array objectAtIndex:j+1]);
         CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
     }
-    [self calcRect];
-}
-
-- (void)calcRect {
-    rect = mainView.bounds;
 }
 
 @end

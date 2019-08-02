@@ -11,6 +11,7 @@
 @interface Figure : NSObject
 @property (nonatomic,readwrite) CGRect rect;
 @property (nonatomic,readwrite) CGPathRef path;
+@property (nonatomic,readwrite) CGColorRef color;
 
 - (void)draw;
 - (id)init:(CGRect) rect path:(CGMutablePathRef) path;

@@ -30,11 +30,6 @@
                       fabs(w));
     
     CGPathAddEllipseInRect(path, NULL, rect);
-    
-    rect = CGRectMake(myStartPoint.x - 6,
-                      myStartPoint.y - 6,
-                      fabs(h) + 12,
-                      fabs(w) + 12);
 }
 
 @end

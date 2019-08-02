@@ -24,15 +24,7 @@
     CGPathMoveToPoint(path, NULL, myStartPoint.x, myStartPoint.y);
     CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
     
-    CGFloat h = myEndPoint.x - myStartPoint.x;
-    CGFloat w = myEndPoint.y - myStartPoint.y;
-    
     [self calcPoints:&myStartPoint endPoint:&myEndPoint];
-    
-    rect = CGRectMake(myStartPoint.x - 6,
-                      myStartPoint.y - 6,
-                      fabs(h) + 12,
-                      fabs(w) + 12);
 }
 
 - (void)calcPoints:(CGPoint*) startPoint endPoint:(CGPoint*) endPoint {

@@ -15,6 +15,7 @@
     id <InstrumentProtocol> instrument;
     NSMutableArray<Figure *> *figuresArray;
     Figure *previewFigure;
+    CGColorRef color;
 }
 @end
 
@@ -22,11 +23,13 @@
 
 @synthesize instrument;
 @synthesize figuresArray;
+@synthesize color;
 
 - (id)init {
     if (self = [super init]) {
         instrument = [[PointInstrument alloc] init: self];
         figuresArray = [NSMutableArray array];
+        color = [UIColor blackColor].CGColor;
     }
     return self;
 }
@@ -35,16 +38,17 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
         figuresArray = [NSMutableArray array];
+        color = [UIColor blackColor].CGColor;
     }
     return self;
 }
 
 - (void) drawRect:(CGRect)rect {
-    [previewFigure draw];
-
+    
     for (Figure *figure in figuresArray) {
         [figure draw];
     }
+    [previewFigure draw];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -61,6 +65,7 @@
     
     //draw new figure
     previewFigure = [self.instrument makeFigure];
+   
     [self setNeedsDisplayInRect:previewFigure.rect];;
     
 }

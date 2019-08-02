@@ -10,10 +10,10 @@
 #import "InstrumentProtocol.h"
 
 @interface CustomView : UIView
-@property (nonatomic,readwrite) UIView* mainView;
 @property (nonatomic,readwrite) id <InstrumentProtocol> instrument;
 @property (nonatomic,readwrite) NSMutableArray *pointArray;
 @property (nonatomic,strong) NSMutableArray<Figure *> *figuresArray;
+@property (nonatomic,readwrite) CGColorRef color;
 
 -(void)clear;
 @end

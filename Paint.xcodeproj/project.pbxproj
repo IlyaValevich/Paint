@@ -96,6 +96,15 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		0972A33A22F4437A004650A4 /* DrawManager */ = {
+			isa = PBXGroup;
+			children = (
+				096FABDB22F306A800F2A3EC /* DrawManager.h */,
+				096FABDC22F3072D00F2A3EC /* DrawManager.m */,
+			);
+			path = DrawManager;
+			sourceTree = "<group>";
+		};
 		09779DFA22EEF0670031553F /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +151,7 @@
 		09A37E5F22E89C8B0075C43B /* Instruments */ = {
 			isa = PBXGroup;
 			children = (
+				0972A33A22F4437A004650A4 /* DrawManager */,
 				09A37E6022E89D9A0075C43B /* InstrumentProtocol.h */,
 				0964622F22F0353C002C7569 /* Instrument.h */,
 				0964622D22F034B0002C7569 /* Instrument.m */,
@@ -155,8 +165,6 @@
 				0964622922F024B3002C7569 /* SquareInstrument.m */,
 				09A37E6722E9BC810075C43B /* StarInstrument.h */,
 				0964622B22F024C0002C7569 /* StarInstrument.m */,
-				096FABDB22F306A800F2A3EC /* DrawManager.h */,
-				096FABDC22F3072D00F2A3EC /* DrawManager.m */,
 			);
 			path = Instruments;
 			sourceTree = "<group>";

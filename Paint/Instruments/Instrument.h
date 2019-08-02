@@ -7,10 +7,13 @@
 //
 
 #import "InstrumentProtocol.h"
+#import "CustomView.h"
 
 @interface Instrument : NSObject <InstrumentProtocol>
+@property (nonatomic,readwrite) CustomView* mainView;
 
 - (void)drawFigure;
 - (void)drawAlgoritm:(NSMutableArray*) array;
-- (id)init:(UIView*) mainView;
+- (void)calcRect;
+- (id)init:(CustomView*) mainView;
 @end

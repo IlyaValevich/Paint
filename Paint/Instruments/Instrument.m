@@ -25,7 +25,7 @@
     return self;
 }
 
-- (id)init:(UIView *)mainView {
+- (id)init:(CustomView*)mainView {
     if (self = [super init]) {
         self.pointArray = [NSMutableArray new];
         self.mainView = mainView;
@@ -34,8 +34,9 @@
 }
 
 - (Figure*)makeFigure {
-
-    return [[DrawManager new] makeFigure:self]; ;
+    Figure *newFigure = [[DrawManager new] makeFigure:self];
+    newFigure.color = mainView.color;
+    return newFigure ;
 }
 
 - (void)drawFigure {
@@ -45,6 +46,11 @@
 
 - (void)drawAlgoritm:(NSMutableArray*) array {
     
+}
+
+- (void)calcRect{
+    self.rect = CGPathGetBoundingBox(self.path);
+    self.rect = CGRectInset(self.rect,-12,-12);
 }
 
 @end

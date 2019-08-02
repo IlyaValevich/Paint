@@ -11,6 +11,7 @@
 @implementation Figure
 @synthesize rect;
 @synthesize path;
+@synthesize color;
 
 - (id)init{
     if (self = [super init]) {
@@ -29,6 +30,7 @@
 }
 
 - (void)draw {
+    
     if(self.path){
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGPathRef thickPath = CGPathCreateCopyByStrokingPath(path, NULL, 8, kCGLineCapRound, kCGLineJoinRound, 0);
@@ -36,7 +38,7 @@
         CGContextAddPath(context, thickPath);
         
         CGContextSetStrokeColorWithColor(context, [UIColor clearColor].CGColor);
-        CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+        CGContextSetFillColorWithColor(context, color);
         CGContextSetLineWidth(context, 8);
         CGContextDrawPath(context, kCGPathFillStroke);
         
