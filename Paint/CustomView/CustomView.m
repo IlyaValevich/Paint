@@ -84,7 +84,6 @@
         [figuresArray addObject:previewFigure];
         [self setNeedsDisplayInRect:previewFigure.rect];
     }
-    
     [self.instrument.pointArray removeAllObjects];
     previewFigure = nil;
     
@@ -97,7 +96,6 @@
 }
 
 - (void)clear {
-    self.backgroundColor = [UIColor clearColor];
     [figuresArray removeLastObject];
     [instrument.pointArray removeAllObjects];
     previewFigure = nil;

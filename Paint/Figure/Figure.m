@@ -45,4 +45,8 @@
     }
 }
 
+- (void)dealloc{
+    CGPathRelease(path);
+}
+
 @end
