@@ -9,6 +9,5 @@
 #import "Instrument.h"
 @interface DrawManager : NSObject
 
-- (void)drawFigure:(Instrument*) instrument;
 - (Figure*)makeFigure:(Instrument*) instrument;
 @end

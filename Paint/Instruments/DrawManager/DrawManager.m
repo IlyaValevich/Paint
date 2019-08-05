@@ -16,15 +16,11 @@
 
 - (Figure*)makeFigure:(Instrument*) instrument {
     instrument.path = CGPathCreateMutable();
-    [self drawFigure:instrument];
-    [instrument calcRect];
-    return [[Figure alloc] init: instrument.rect path: instrument.path];
-}
-
-- (void)drawFigure:(Instrument*) instrument {
     if ([instrument.pointArray count] > 0) {
         [instrument drawAlgoritm:instrument.pointArray];
     }
+    [instrument calcRect];
+    return [[Figure alloc] init: instrument.rect path: instrument.path];
 }
 
 @end
