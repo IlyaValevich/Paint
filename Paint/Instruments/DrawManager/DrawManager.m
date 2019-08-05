@@ -16,7 +16,7 @@
 
 - (Figure*)makeFigure:(Instrument*) instrument {
     instrument.path = CGPathCreateMutable();
-    [instrument drawFigure];
+    [self drawFigure:instrument];
     [instrument calcRect];
     return [[Figure alloc] init: instrument.rect path: instrument.path];
 }

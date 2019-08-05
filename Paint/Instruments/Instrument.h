@@ -12,7 +12,6 @@
 @interface Instrument : NSObject <InstrumentProtocol>
 @property (nonatomic,readwrite) CustomView* mainView;
 
-- (void)drawFigure;
 - (void)drawAlgoritm:(NSMutableArray*) array;
 - (void)calcRect;
 - (id)init:(CustomView*) mainView;

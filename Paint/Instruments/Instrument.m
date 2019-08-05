@@ -39,11 +39,6 @@
     return newFigure ;
 }
 
-- (void)drawFigure {
-    [[DrawManager new] drawFigure:self];
-}
-
-
 - (void)drawAlgoritm:(NSMutableArray*) array {
     
 }

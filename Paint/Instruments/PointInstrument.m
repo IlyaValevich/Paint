@@ -12,7 +12,6 @@
 @implementation PointInstrument
 
 @synthesize pointArray;
-//@synthesize mainView;
 @synthesize path;
 @synthesize rect;
 

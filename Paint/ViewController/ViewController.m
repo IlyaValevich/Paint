@@ -19,7 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     self.customView = [[CustomView alloc] initWithFrame:CGRectZero];
     self.upperStackView = [UIStackView new];
     self.lowerStackView = [UIStackView new];
