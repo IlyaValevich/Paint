@@ -46,14 +46,14 @@
                                   action:@selector(squareButtonAction:)];
     
     self.starButton = [self makeButton:self.starButton
-                                logoName:@"star_logo.png"
-                        selectedLogoName:@"star_logo_selected.png"
-                                  action:@selector(starButtonAction:)];
-   
+                              logoName:@"star_logo.png"
+                      selectedLogoName:@"star_logo_selected.png"
+                                action:@selector(starButtonAction:)];
+    
     self.clearButton = [self makeButton:self.clearButton
-                              logoName:@"eraser_logo.png"
-                      selectedLogoName:@"eraser_logo.png"
-                                action:@selector(clearButtonAction)];
+                               logoName:@"eraser_logo.png"
+                       selectedLogoName:@"eraser_logo.png"
+                                 action:@selector(clearButtonAction)];
     
     self.colorControlButton = [self makeButton:self.colorControlButton
                                       logoName:@"color_control_logo.png"
@@ -168,38 +168,52 @@
 
 - (void)hideColorsAnimation{
     [UIView animateWithDuration:0.3 animations:^{
-        
         self.redColorButton.alpha = 0;
         self.greenColorButton.alpha = 0;
         self.blueColorButton.alpha = 0;
         self.blackColorButton.alpha = 0;
         self.yellowColorButton.alpha = 0;
-        self.redColorButton.center = CGPointMake(self.redColorButton.center.x , self.redColorButton.center.y  - self.redColorButton.bounds.size.height);
+        self.redColorButton.center = CGPointMake(self.redColorButton.center.x ,
+                                                 self.redColorButton.center.y
+                                                 - self.redColorButton.bounds.size.height);
         self.greenColorButton.center = self.redColorButton.center;
         self.blueColorButton.center = self.redColorButton.center;
         self.yellowColorButton.center = self.redColorButton.center;
         self.blackColorButton.center = self.redColorButton.center;
-        [self.upperStackView setHidden:YES];
-    }];
+    }
+                     completion:^(BOOL finished){
+                         [self.upperStackView setHidden:YES];
+                     }];
     self.colorsIsOpen = false;
 }
 
 - (void)showColorsAnimation{
+    [self.upperStackView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
-        [self.redColorButton setCenter:CGPointMake(self.redColorButton.center.x , self.redColorButton.center.y  + self.redColorButton.bounds.size.height)];
-        [self.greenColorButton setCenter:CGPointMake(self.redColorButton.center.x , self.redColorButton.center.y   +  self.redColorButton.bounds.size.height)];
-        [self.blueColorButton setCenter:CGPointMake(self.redColorButton.center.x ,  self.redColorButton.center.y   + 2 * self.redColorButton.bounds.size.height)];
-        [self.yellowColorButton setCenter:CGPointMake(self.redColorButton.center.x ,  self.redColorButton.center.y   + 3 * self.redColorButton.bounds.size.height)];
-        [self.blackColorButton setCenter:CGPointMake(self.redColorButton.center.x ,  self.redColorButton.center.y   + 4 * self.redColorButton.bounds.size.height)];
+        [self.redColorButton setCenter:CGPointMake(self.redColorButton.center.x ,
+                                                   self.redColorButton.center.y
+                                                   + self.redColorButton.bounds.size.height)];
+        [self.greenColorButton setCenter:CGPointMake(self.redColorButton.center.x ,
+                                                     self.redColorButton.center.y
+                                                     + self.redColorButton.bounds.size.height)];
+        [self.blueColorButton setCenter:CGPointMake(self.redColorButton.center.x ,
+                                                    self.redColorButton.center.y
+                                                    + 2 * self.redColorButton.bounds.size.height)];
+        [self.yellowColorButton setCenter:CGPointMake(self.redColorButton.center.x ,
+                                                      self.redColorButton.center.y
+                                                      + 3 * self.redColorButton.bounds.size.height)];
+        [self.blackColorButton setCenter:CGPointMake(self.redColorButton.center.x ,
+                                                     self.redColorButton.center.y
+                                                     + 4 * self.redColorButton.bounds.size.height)];
     }];
-   
+    
+    
     [UIView animateWithDuration:0.5 animations:^{
         self.redColorButton.alpha = 1;
         self.greenColorButton.alpha = 1;
         self.blueColorButton.alpha = 1;
         self.blackColorButton.alpha = 1;
         self.yellowColorButton.alpha = 1;
-        [self.upperStackView setHidden:NO];
     }];
     self.colorsIsOpen = true;
 }
@@ -210,7 +224,7 @@
     }
     else{
         [self showColorsAnimation];
- 
+        
     }
 }
 
@@ -294,7 +308,7 @@
     [self setEqualHeightAndWidth:self.ellipseButton to:self.pointButton];
     [self setEqualHeightAndWidth:self.squareButton to:self.pointButton];
     [self setEqualHeightAndWidth:self.starButton to:self.pointButton];
-
+    
     [self setEqualHeightAndWidth:self.colorControlButton to:self.clearButton];
     [self setEqualHeightAndWidth:self.redColorButton to:self.colorControlButton];
     [self setEqualHeightAndWidth:self.greenColorButton to:self.colorControlButton];
@@ -303,7 +317,7 @@
     [self setEqualHeightAndWidth:self.yellowColorButton to:self.colorControlButton];
     [self setEqualHeightAndWidth:self.clearButton to:self.pointButton];
     
-  
+    
     
     [self.customView.topAnchor constraintEqualToAnchor:self.colorControlButton.bottomAnchor
                                               constant: 0].active = YES;
