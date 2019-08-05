@@ -26,18 +26,14 @@
     
     h = MAX(h, w);
     w = h;
-    CGFloat rectOffsetX = 10;
-    CGFloat rectOffsetY = rectOffsetX;
     if(myEndPoint.x < myStartPoint.x) {
         if(h > 0) {
             h = -h;
-            rectOffsetX  = - rectOffsetX ;
         }
     }
     if(myEndPoint.y < myStartPoint.y) {
         if(w > 0) {
             w = -w;
-            rectOffsetY = - rectOffsetY;
         }
     }
     
