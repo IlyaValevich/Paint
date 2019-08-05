@@ -30,7 +30,6 @@
 }
 
 - (void)draw {
-    
     if(self.path){
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGPathRef thickPath = CGPathCreateCopyByStrokingPath(path, NULL, 8, kCGLineCapRound, kCGLineJoinRound, 0);
