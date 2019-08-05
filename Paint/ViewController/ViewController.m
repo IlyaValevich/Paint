@@ -184,6 +184,7 @@
     }
                      completion:^(BOOL finished){
                          [self.upperStackView setHidden:YES];
+                         [self.colorControlButton setEnabled:YES];
                      }];
 }
 
@@ -205,19 +206,20 @@
         [self.blackColorButton setCenter:CGPointMake(self.redColorButton.center.x ,
                                                      self.redColorButton.center.y
                                                      + 4 * self.redColorButton.bounds.size.height)];
-    }];
-    
-    
-    [UIView animateWithDuration:0.5 animations:^{
+
         self.redColorButton.alpha = 1;
         self.greenColorButton.alpha = 1;
         self.blueColorButton.alpha = 1;
         self.blackColorButton.alpha = 1;
         self.yellowColorButton.alpha = 1;
-    }];
+    }
+                     completion:^(BOOL finished){
+                         [self.colorControlButton setEnabled:YES];
+                     }];
 }
 
 - (void)colorControlButtonAction{
+    [self.colorControlButton setEnabled:NO];
     if(self.upperStackView.isHidden){
         [self showColorsAnimation];
     }
@@ -300,7 +302,7 @@
     [self.upperStackView.topAnchor constraintEqualToAnchor:self.colorControlButton.bottomAnchor
                                                   constant: 0].active = true;
     [self.upperStackView.leadingAnchor constraintEqualToAnchor:self.colorControlButton.leadingAnchor
-                                                       constant: 0].active = YES;
+                                                      constant: 0].active = YES;
     
     [self setEqualHeightAndWidth:self.lineButton to:self.pointButton];
     [self setEqualHeightAndWidth:self.ellipseButton to:self.pointButton];
