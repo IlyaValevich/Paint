@@ -91,6 +91,7 @@
 }
 
 - (void) viewDidLayoutSubviews{
+    [self.upperStackView setHidden:YES];
     [self hideColorsAnimation];
     
 }

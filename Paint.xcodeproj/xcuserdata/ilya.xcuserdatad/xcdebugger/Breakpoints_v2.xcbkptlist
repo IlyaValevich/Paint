@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Paint/ViewController/ViewController.m"
-            timestampString = "586691201.3131011"
+            timestampString = "586692838.321653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "-makeButton:logoName:selectedLogoName:action:"
             landmarkType = "7">
          </BreakpointContent>
