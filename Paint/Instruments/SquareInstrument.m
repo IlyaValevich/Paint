@@ -24,26 +24,15 @@
     CGFloat h = myEndPoint.x - myStartPoint.x;
     CGFloat w = myEndPoint.y - myStartPoint.y;
     
-    h = MAX(h, w);
-    w = h;
-    if(myEndPoint.x < myStartPoint.x) {
-        if(h > 0) {
-            h = -h;
-        }
-    }
-    if(myEndPoint.y < myStartPoint.y) {
-        if(w > 0) {
-            w = -w;
-        }
-    }
+    [self calcPoints:&myStartPoint endPoint:&myEndPoint];
     
     rect = CGRectMake(myStartPoint.x,
                       myStartPoint.y,
-                      h,
-                      w);
-    
+                      fabs(h),
+                      fabs(w));
+
     CGPathAddRect(path, NULL, rect);
-    
+   
 }
 
 @end
