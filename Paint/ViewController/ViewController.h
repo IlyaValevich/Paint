@@ -26,6 +26,5 @@
 @property (nonatomic,strong) UIButton *greenColorButton;
 @property (nonatomic,strong) UIButton *blackColorButton;
 @property (nonatomic,strong) UIButton *yellowColorButton;
-@property (nonatomic) bool colorsIsOpen;
 @end
 

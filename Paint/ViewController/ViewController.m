@@ -185,7 +185,6 @@
                      completion:^(BOOL finished){
                          [self.upperStackView setHidden:YES];
                      }];
-    self.colorsIsOpen = false;
 }
 
 - (void)showColorsAnimation{
@@ -216,16 +215,14 @@
         self.blackColorButton.alpha = 1;
         self.yellowColorButton.alpha = 1;
     }];
-    self.colorsIsOpen = true;
 }
 
 - (void)colorControlButtonAction{
-    if(self.colorsIsOpen){
-        [self hideColorsAnimation];
+    if(self.upperStackView.isHidden){
+        [self showColorsAnimation];
     }
     else{
-        [self showColorsAnimation];
-        
+        [self hideColorsAnimation];
     }
 }
 
@@ -291,12 +288,12 @@
                                                   constant:0].active = YES;
     
     [self.clearButton.topAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.topAnchor
-                                               constant: 20].active = YES;
+                                               constant: 8].active = YES;
     [self.clearButton.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor
-                                                   constant:- 64].active = YES;
+                                                   constant: - 64].active = YES;
     
     [self.colorControlButton.topAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.topAnchor
-                                                      constant: 20].active = true;
+                                                      constant: 8].active = true;
     [self.colorControlButton.trailingAnchor
      constraintEqualToAnchor:self.clearButton.leadingAnchor ].active = YES;
     
