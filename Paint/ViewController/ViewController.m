@@ -288,19 +288,19 @@
                                                   constant:0].active = YES;
     
     [self.clearButton.topAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.topAnchor
-                                               constant: 8].active = YES;
-    [self.clearButton.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor
-                                                   constant: - 64].active = YES;
+                                               constant: 0].active = YES;
+    [self.clearButton.leadingAnchor constraintEqualToAnchor:self.starButton.leadingAnchor
+                                                   constant: 0].active = YES;
     
     [self.colorControlButton.topAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.topAnchor
-                                                      constant: 8].active = true;
+                                                      constant: 0].active = true;
     [self.colorControlButton.trailingAnchor
      constraintEqualToAnchor:self.clearButton.leadingAnchor ].active = YES;
     
     [self.upperStackView.topAnchor constraintEqualToAnchor:self.colorControlButton.bottomAnchor
                                                   constant: 0].active = true;
-    [self.upperStackView.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor
-                                                       constant: -64].active = YES;
+    [self.upperStackView.leadingAnchor constraintEqualToAnchor:self.colorControlButton.leadingAnchor
+                                                       constant: 0].active = YES;
     
     [self setEqualHeightAndWidth:self.lineButton to:self.pointButton];
     [self setEqualHeightAndWidth:self.ellipseButton to:self.pointButton];
