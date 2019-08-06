@@ -16,19 +16,18 @@
 @synthesize rect;
 
 - (void)drawAlgoritm:(NSMutableArray*) array {
-   // UIBezierPath *newPath = [UIBezierPath bezierPathWithCGPath:path];
     CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
-    //[newPath moveToPoint:myStartPoint];
     CGPathMoveToPoint(path, NULL, myStartPoint.x, myStartPoint.y);
-    
-    for (int j = 0; j < [array count] - 1; j++) {
-        CGPoint myEndPoint = CGPointFromString([array objectAtIndex:j+1]);
-        CGPathAddLineToPoint(path,NULL, myEndPoint.x,myEndPoint.y);
-        //[newPath moveToPoint:myEndPoint];
-
+   
+    if ([array count]>3)
+    for (int j = 1; j < [array count] - 2  ; j++) {
+        if(j % 3 == 1){
+            CGPoint myBufPoint = CGPointFromString([array objectAtIndex:j ]);
+            CGPoint myMidPoint = CGPointFromString([array objectAtIndex:j + 1]);
+            CGPoint myEndPoint = CGPointFromString([array objectAtIndex:j + 2]);
+            CGPathAddCurveToPoint(path, NULL,myBufPoint.x,myBufPoint.y ,myMidPoint.x, myMidPoint.y, myEndPoint.x, myEndPoint.y);
+        }
     }
-    //path = CGPathCreateMutableCopy(newPath.CGPath);
-    //newPath.CGPath;
     
 }
 

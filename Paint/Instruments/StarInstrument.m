@@ -23,7 +23,6 @@
     CGPoint myStartPoint = CGPointFromString([array objectAtIndex:0]);
     CGPoint myEndPoint = CGPointFromString([array objectAtIndex:[array count] - 1]);
 
-    
     CGFloat h = myEndPoint.x - myStartPoint.x;
     CGFloat w = myEndPoint.y - myStartPoint.y;
     
